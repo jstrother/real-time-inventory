@@ -4,7 +4,9 @@
   "description": "A simple inventory tracker in real-time",
   "main": "scripts.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "nodemon --harmony server.js",
+    "build": "webpack",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -35,10 +37,13 @@
     "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "webpack": "^1.14.0"
   }
