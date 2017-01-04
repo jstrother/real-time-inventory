@@ -1,0 +1,42 @@
+{
+  "name": "real-time-inventory",
+  "version": "1.0.0",
+  "description": "A simple inventory tracker in real-time",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jstrother/real-time-inventory.git"
+  },
+  "author": "Jim Strother",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jstrother/real-time-inventory/issues"
+  },
+  "homepage": "https://github.com/jstrother/real-time-inventory#readme",
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "express": "^4.14.0",
+    "material-ui": "^0.16.6",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "rethinkdb": "^2.3.3",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "eslint": "^3.12.2",
+    "nodemon": "^1.11.0",
+    "webpack": "^1.14.0"
+  }
+}
