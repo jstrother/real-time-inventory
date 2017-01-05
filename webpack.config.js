@@ -1,5 +1,6 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path'),
+      webpack = require('webpack'),
+      UglifyJsPlugin = require('uglify-js-plugin');
 
 module.exports = {
 	entry: './components/index.jsx',
@@ -7,7 +8,6 @@ module.exports = {
 		path: `${__dirname}/public`,
 		filename: 'scripts.js'
 	},
-	watch: true,
 	devtool: 'source-map',
 	module: {
 		loaders: [{
@@ -20,7 +20,10 @@ module.exports = {
 					'react'
 				],
 				plugins: [
-					'transform-class-properties'
+					'transform-class-properties',
+					new UglifyJsPlugin({
+                      minimize: true
+                    })
 				]
 			}
 		}]
