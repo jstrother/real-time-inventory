@@ -6,11 +6,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '../flow/store.js';
 import App from './app.jsx';
-import TodoSocketListeners from '../socket-listeners/task-listener.js';
+import InventorySocketListeners from '../socket-listeners/inventory-listener.js';
+import UserSocketListeners from '../socket-listeners/user-listener.js';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-TodoSocketListeners(store);
+InventorySocketListeners(store);
+UserSocketListeners(store);
 
 ReactDOM.render(
 	<Provider store={store} >
