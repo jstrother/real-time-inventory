@@ -19,6 +19,9 @@ alias S="i -S"
 # the following is an alias to install to dependencies (packages can be specified)
 alias D="i -D"
 
+# the following is an alias to install npm packages globally
+alias G="i -g"
+
 # the following is an alias for npm uninstall (packages can be specified)
 alias ui="npm uninstall -S -D"
 
@@ -69,3 +72,6 @@ alias remove="git rm -rf $1"
 
 # the following is an alias to switch between master branch and gh-pages
 alias switch="git checkout $1"
+
+# the following is an alias to start rethink on port 8081
+alias rethink="rethinkdb --bind all --http-port 8081"

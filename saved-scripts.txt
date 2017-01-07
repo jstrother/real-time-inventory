@@ -1,0 +1,5 @@
+to be replaced into package.json
+
+in build:js -  && npm run uglify
+
+in build:html -  && npm run image && npm run font
