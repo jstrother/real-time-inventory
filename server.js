@@ -25,7 +25,7 @@ var PORT = 9000;
 
 app.use(_express2.default.static('public'));
 app.get('*', function (req, res) {
-    res.sendFile(_path2.default.join(__dirname + ' /public/index.html'));
+    res.sendFile(_path2.default.join(__dirname + '/public/index.html'));
 });
 
 r.connect({

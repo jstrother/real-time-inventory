@@ -5,10 +5,9 @@ const path = require('path'),
 module.exports = {
 	entry: './components/index.jsx',
 	output: {
-		path: `${__dirname}/public`,
-		filename: 'scripts.js'
+		path: `${__dirname}/js`,
+		filename: 'scripts-webpack.js'
 	},
-	devtool: 'source-map',
 	module: {
 		loaders: [{
 			test: /.jsx?$/,
