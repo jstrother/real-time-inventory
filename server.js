@@ -10,12 +10,17 @@ var _express2 = _interopRequireDefault(_express);
 
 var _http = require('http');
 
+var _rethinkdb = require('rethinkdb');
+
+var r = _interopRequireWildcard(_rethinkdb);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
 var server = (0, _http.Server)(app);
 var io = require('socket.io')(server);
-var r = require("rethinkdb");
 var PORT = 9000;
 
 app.use(_express2.default.static('public'));

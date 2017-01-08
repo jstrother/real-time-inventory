@@ -3,23 +3,44 @@
 
 // change exports to be inventory and user
 
-export const newTask = task => {
+export const newItem = item => {
 	return {
-		type: 'task:insert',
-		task: task
+		type: 'inventory:item:insert',
+		item
 	};
 };
 
-export const updateTask = task => {
+export const updateItem = item => {
 	return {
-		type: 'task:update',
-		task: task
+		type: 'inventory:item:update',
+		item
 	};
 };
 
-export const deleteTask = task => {
+export const deleteItem = item => {
 	return {
-		type: 'task:delete',
-		task: task
+		type: 'inventory:item:delete',
+		item
+	};
+};
+
+export const newUser = user => {
+	return {
+		type: 'inventory:user:insert',
+		user
+	};
+};
+
+export const updateUser = user => {
+	return {
+		type: 'inventory:user:update',
+		user
+	};
+};
+
+export const deleteUser = user => {
+	return {
+		type: 'inventory:user:delete',
+		user
 	};
 };

@@ -3,11 +3,11 @@
 import path from 'path';
 import express from 'express';
 import { Server } from 'http';
+import * as r from 'rethinkdb';
 
 const app = express();
 const server = Server(app);
 const io = require('socket.io')(server);
-const r = require("rethinkdb");
 const PORT = 9000;
 
 app.use(express.static('public'));
