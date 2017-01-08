@@ -20,10 +20,7 @@ module.exports = {
 					'react'
 				],
 				plugins: [
-					'transform-class-properties',
-					new UglifyJsPlugin({
-                      minimize: true
-                    })
+					'transform-class-properties'
 				]
 			}
 		}]

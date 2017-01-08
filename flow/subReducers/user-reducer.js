@@ -8,10 +8,10 @@ const userReducer = (state = [], action) => {
     };
     
     switch(action.type) {
-        case 'user:insert':
+        case 'inventory:user:insert':
             return userIndex() < 0 ? [...state, action.item] : state;
             
-        case 'user:update':
+        case 'inventory:user:update':
             let updateIndex = userIndex();
             if (updateIndex > -1) {
                 let updatedUser = Object.assign({}, state[updateIndex], action.user);
@@ -21,7 +21,7 @@ const userReducer = (state = [], action) => {
                 return state;
             }
             
-        case 'user:delete':
+        case 'inventory:user:delete':
             let deleteIndex = userIndex();
             if (deleteIndex > -1) {
                 return [...state.slice(0, deleteIndex), ...state.slice(deleteIndex + 1)];
