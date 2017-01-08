@@ -14,6 +14,10 @@ var _rethinkdb = require('rethinkdb');
 
 var r = _interopRequireWildcard(_rethinkdb);
 
+var _socketEvents = require('./socket-events.js');
+
+var changefeedSocketEvents = _interopRequireWildcard(_socketEvents);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -64,6 +68,9 @@ r.connect({
             delete user.id;
             r.table('users').get(deleteUserID).delete().run(connection);
         });
+
+        r.table('items').changes({ includeInitial: true, squash: true }).run(connection).then(changefeedSocketEvents(socket, 'item'));
+        r.table('users').changes({ includeInitial: true, squash: true }).run(connection).then(changefeedSocketEvents(socket, 'user'));
     });
     server.listen(PORT);
 }).error(function (error) {

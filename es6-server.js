@@ -4,6 +4,7 @@ import path from 'path';
 import express from 'express';
 import { Server } from 'http';
 import * as r from 'rethinkdb';
+import * as changefeedSocketEvents from './socket-events.js';
 
 const app = express();
 const server = Server(app);
@@ -52,6 +53,11 @@ r.connect({
             delete user.id;
             r.table('users').get(deleteUserID).delete().run(connection);
         });
+        
+        r.table('items').changes({ includeInitial: true, squash: true }).run(connection)
+            .then(changefeedSocketEvents(socket, 'item'));
+        r.table('users').changes({ includeInitial: true, squash: true }).run(connection)
+            .then(changefeedSocketEvents(socket, 'user'));
     });
     server.listen(PORT);
 })
