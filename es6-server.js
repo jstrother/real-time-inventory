@@ -21,28 +21,41 @@ r.connect({
 })
 .then((connection) => {
     io.on('connection', (socket) => {
-        socket.on('inventory:item:insert', () => {
-            
+        socket.on('inventory:item:insert', (item) => {
+            r.table('items').insert(item).run(connection);
         });
         
-        socket.on('inventory:item:update', () => {
-            
+        socket.on('inventory:item:update', (item) => {
+            let updateItemID = item.id;
+            delete item.id;
+            r.table('items').get(updateItemID).update(item).run(connection);
         });
         
-        socket.on('inventory:item:delete', () => {
-            
+        socket.on('inventory:item:delete', (item) => {
+            let deleteItemID = item.id;
+            delete item.id;
+            r.table('items').get(deleteItemID).delete().run(connection);
         });
         
-        socket.on('inventory:user:insert', () => {
-            
+        socket.on('inventory:user:insert', (user) => {
+            r.table('users').insert(user).run(connection);
         });
         
-        socket.on('inventory:user:update', () => {
-            
+        socket.on('inventory:user:update', (user) => {
+            let updateUserID = user.id;
+            delete user.id;
+            r.table('users').get(updateUserID).update(user).run(connection);
         });
         
-        socket.on('inventory:user:delete', () => {
-            
+        socket.on('inventory:user:delete', (user) => {
+            let deleteUserID = user.id;
+            delete user.id;
+            r.table('users').get(deleteUserID).delete().run(connection);
         });
     });
+    server.listen(PORT);
+})
+.error((error) => {
+    console.log('Error connecting to database');
+    console.log(error);
 });
