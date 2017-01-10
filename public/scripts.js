@@ -25387,11 +25387,6 @@ $(function () {
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Real-Time Inventory Tracker'
-	                ),
 	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }

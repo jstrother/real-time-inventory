@@ -10,7 +10,6 @@ class Main extends React.component {
     render() {
         return (
             <div>
-                <h1>Real-Time Inventory Tracker</h1>
                 <AppBar title="Real-Time Inventory Tracker" />
             </div>
         );
