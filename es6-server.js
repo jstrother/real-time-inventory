@@ -22,33 +22,33 @@ r.connect({
 })
 .then((connection) => {
     io.on('connection', (socket) => {
-        socket.on('inventory:item:insert', (item) => {
+        socket.on('item:insert', (item) => {
             r.table('items').insert(item).run(connection);
         });
         
-        socket.on('inventory:item:update', (item) => {
+        socket.on('item:update', (item) => {
             let updateItemID = item.id;
             delete item.id;
             r.table('items').get(updateItemID).update(item).run(connection);
         });
         
-        socket.on('inventory:item:delete', (item) => {
+        socket.on('item:delete', (item) => {
             let deleteItemID = item.id;
             delete item.id;
             r.table('items').get(deleteItemID).delete().run(connection);
         });
         
-        socket.on('inventory:user:insert', (user) => {
+        socket.on('user:insert', (user) => {
             r.table('users').insert(user).run(connection);
         });
         
-        socket.on('inventory:user:update', (user) => {
+        socket.on('user:update', (user) => {
             let updateUserID = user.id;
             delete user.id;
             r.table('users').get(updateUserID).update(user).run(connection);
         });
         
-        socket.on('inventory:user:delete', (user) => {
+        socket.on('user:delete', (user) => {
             let deleteUserID = user.id;
             delete user.id;
             r.table('users').get(deleteUserID).delete().run(connection);

@@ -25252,10 +25252,10 @@
 	    };
 
 	    switch (action.type) {
-	        case 'inventory:item:insert':
+	        case 'item:insert':
 	            return inventoryIndex() < 0 ? [].concat(_toConsumableArray(state), [action.item]) : state;
 
-	        case 'inventory:item:update':
+	        case 'item:update':
 	            var updateIndex = inventoryIndex();
 	            if (updateIndex > -1) {
 	                var updatedItem = Object.assign({}, state[updateIndex], action.item);
@@ -25264,7 +25264,7 @@
 	                return state;
 	            }
 
-	        case 'inventory:item:delete':
+	        case 'item:delete':
 	            var deleteIndex = inventoryIndex();
 	            if (deleteIndex > -1) {
 	                return [].concat(_toConsumableArray(state.slice(0, deleteIndex)), _toConsumableArray(state.slice(deleteIndex + 1)));
@@ -25304,10 +25304,10 @@
 	    };
 
 	    switch (action.type) {
-	        case 'inventory:user:insert':
+	        case 'user:insert':
 	            return userIndex() < 0 ? [].concat(_toConsumableArray(state), [action.item]) : state;
 
-	        case 'inventory:user:update':
+	        case 'user:update':
 	            var updateIndex = userIndex();
 	            if (updateIndex > -1) {
 	                var updatedUser = Object.assign({}, state[updateIndex], action.user);
@@ -25316,7 +25316,7 @@
 	                return state;
 	            }
 
-	        case 'inventory:user:delete':
+	        case 'user:delete':
 	            var deleteIndex = userIndex();
 	            if (deleteIndex > -1) {
 	                return [].concat(_toConsumableArray(state.slice(0, deleteIndex)), _toConsumableArray(state.slice(deleteIndex + 1)));
@@ -32860,23 +32860,23 @@
 	// imported into index.jsx
 
 	exports.default = function (store) {
-	    socket.on('inventory:item:insert', function (item) {
+	    socket.on('item:insert', function (item) {
 	        store.dispatch({
-	            type: 'inventory:item:insert',
+	            type: 'item:insert',
 	            item: item
 	        });
 	    });
 
-	    socket.on('inventory:item:update', function (item) {
+	    socket.on('item:update', function (item) {
 	        store.dispatch({
-	            type: 'inventory:item:update',
+	            type: 'item:update',
 	            item: item
 	        });
 	    });
 
-	    socket.on('inventory:item:delete', function (item) {
+	    socket.on('item:delete', function (item) {
 	        store.dispatch({
-	            type: 'inventory:item:delete',
+	            type: 'item:delete',
 	            item: item
 	        });
 	    });

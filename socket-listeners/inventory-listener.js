@@ -5,23 +5,23 @@ import io from 'socket.io/node_modules/socket.io-client';
 const socket = io.connect('/');
 
 export default (store) => {
-    socket.on('inventory:item:insert', (item) => {
+    socket.on('item:insert', (item) => {
         store.dispatch({
-            type: 'inventory:item:insert',
+            type: 'item:insert',
             item
         });
     });
     
-    socket.on('inventory:item:update', (item) => {
+    socket.on('item:update', (item) => {
         store.dispatch({
-            type: 'inventory:item:update',
+            type: 'item:update',
             item
         });
     });
     
-    socket.on('inventory:item:delete', (item) => {
+    socket.on('item:delete', (item) => {
         store.dispatch({
-            type: 'inventory:item:delete',
+            type: 'item:delete',
             item
         });
     });
