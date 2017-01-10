@@ -25357,11 +25357,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(183);
-
 	var _AppBar = __webpack_require__(242);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
+
+	var _reactRedux = __webpack_require__(183);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25389,8 +25389,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker',
-	                    showMenuIconButton: false })
+	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }
 	    }]);

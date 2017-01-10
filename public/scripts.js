@@ -1,3 +1,12 @@
+"use strict";
+
+var _jquery = require("jquery");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _jquery2.default)(function () {});
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -25380,6 +25389,11 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Real-Time Inventory Tracker'
+	                ),
 	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }
