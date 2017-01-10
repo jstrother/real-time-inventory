@@ -25346,8 +25346,6 @@
 
 	var _react = __webpack_require__(1);
 
-	var _react2 = _interopRequireDefault(_react);
-
 	var _AppBar = __webpack_require__(242);
 
 	var _AppBar2 = _interopRequireDefault(_AppBar);
@@ -25363,10 +25361,13 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // components/app.jsx
 	// imported into ./index.jsx
 
+	// import React from 'react';
+
+
 	// need components to set-up new user and see inventory
 
-	var Main = function (_React$component) {
-	    _inherits(Main, _React$component);
+	var Main = function (_component) {
+	    _inherits(Main, _component);
 
 	    function Main() {
 	        _classCallCheck(this, Main);
@@ -25377,16 +25378,16 @@
 	    _createClass(Main, [{
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(
+	            return React.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
+	                React.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }
 	    }]);
 
 	    return Main;
-	}(_react2.default.component);
+	}(_react.Component);
 
 	function mapStateToProps(user, item) {
 	    console.log('user', user, 'item', item);

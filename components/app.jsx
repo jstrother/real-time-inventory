@@ -1,12 +1,13 @@
 // components/app.jsx
 // imported into ./index.jsx
 
-import React from 'react';
+// import React from 'react';
+import { Component as component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 // need components to set-up new user and see inventory
 
-class Main extends React.component {
+class Main extends component {
     render() {
         return (
             <div>
