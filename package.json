@@ -15,7 +15,6 @@
     "es6SocketEvents": "babel es6-socket-events.js -o socket-events.js",
     "es6MyScripts": "babel js/es6-myScripts.js -o js/myScripts.js",
     "merge:js": "cat js/myScripts.js js/scripts-webpack.js > public/scripts.js",
-    "uglify": "uglifyjs js/scripts.js -m -c -o public/scripts.min.js",
     "serve": "browser-sync start --server --files 'public/*.html, public/*.css, public/*.js, public/font/*.*, public/img/*.*'",
     "build:html": "npm run html && npm run image && npm run font",
     "build:css": "npm run scss && npm run autoprefixer && npm run cleancss",

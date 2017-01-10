@@ -32,6 +32,10 @@ app.get('*', function (req, res) {
     res.sendFile(_path2.default.join(__dirname + '/public/index.html'));
 });
 
+if (!r.db('inventory')) {
+    r.dbCreate('inventory');
+}
+
 r.connect({
     user: 'admin',
     db: 'inventory'
