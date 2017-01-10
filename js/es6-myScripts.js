@@ -1,7 +1,6 @@
 "use strict";
 
-import $ from 'jquery';
-
+// jquery included in index.html
 $(() => {
-    
+    console.log('ready');
 })

@@ -1,12 +1,10 @@
 "use strict";
 
-var _jquery = require("jquery");
+// jquery included in index.html
 
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-(0, _jquery2.default)(function () {});
+$(function () {
+    console.log('ready');
+});
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -25389,6 +25387,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Real-Time Inventory Tracker'
+	                ),
 	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }
@@ -25397,9 +25400,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	    return Main;
 	}(_react2.default.component);
 
-	function mapStateToProps() {}
+	function mapStateToProps(user, item) {
+	    console.log('user', user, 'item', item);
+	    return { user: user, item: item };
+	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps(Main));
+	exports.default = Main;
+	// export default connect(mapStateToProps(Main));
 
 /***/ },
 /* 242 */

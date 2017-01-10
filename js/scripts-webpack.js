@@ -25380,6 +25380,11 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'Real-Time Inventory Tracker'
+	                ),
 	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker' })
 	            );
 	        }
@@ -25388,9 +25393,13 @@
 	    return Main;
 	}(_react2.default.component);
 
-	function mapStateToProps() {}
+	function mapStateToProps(user, item) {
+	    console.log('user', user, 'item', item);
+	    return { user: user, item: item };
+	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps(Main));
+	exports.default = Main;
+	// export default connect(mapStateToProps(Main));
 
 /***/ },
 /* 242 */

@@ -10,6 +10,7 @@ class Main extends React.component {
     render() {
         return (
             <div>
+                <h1>Real-Time Inventory Tracker</h1>
                 <AppBar title="Real-Time Inventory Tracker" />
             </div>
         );
@@ -21,4 +22,5 @@ function mapStateToProps(user, item) {
     return { user, item };
 }
 
-export default connect(mapStateToProps(Main));
+export default Main;
+// export default connect(mapStateToProps(Main));
