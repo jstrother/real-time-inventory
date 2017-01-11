@@ -6,17 +6,19 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '../flow/store.js';
 import App from './app.jsx';
-import InventorySocketListeners from '../socket-listeners/inventory-listener.js';
-// import UserSocketListeners from '../socket-listeners/user-listener.js';
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import InventorySocketListener from '../socket-listeners/inventory-listener.js';
+// import UserSocketListener from '../socket-listeners/user-listener.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-InventorySocketListeners(store);
-// UserSocketListeners(store);
+// InventorySocketListener(store);
+// UserSocketListener(store);
 
 ReactDOM.render(
 	<Provider store={store} >
-		<App />
+		<MuiThemeProvider muiTheme={getMuiTheme()}>
+			<App />
+		</MuiThemeProvider>
 	</Provider>,
 	document.getElementById('app')
 );

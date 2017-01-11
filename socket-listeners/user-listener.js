@@ -4,7 +4,7 @@
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-const UserSocketListeners = (store) => {
+const UserSocketListener = (store) => {
     socket.on('user:insert', (item) => {
         store.dispatch({
             type: 'user:insert',
@@ -27,4 +27,4 @@ const UserSocketListeners = (store) => {
     });
 };
 
-export default UserSocketListeners;
+export default UserSocketListener;

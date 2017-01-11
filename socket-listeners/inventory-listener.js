@@ -4,7 +4,7 @@
 import io from 'socket.io-client';
 const socket = io.connect('/');
 
-const InventorySocketListeners = (store) => {
+const InventorySocketListener = (store) => {
     socket.on('item:insert', (item) => {
         store.dispatch({
             type: 'item:insert',
@@ -27,4 +27,4 @@ const InventorySocketListeners = (store) => {
     });
 };
 
-export default InventorySocketListeners;
+export default InventorySocketListener;
