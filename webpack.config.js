@@ -17,17 +17,19 @@ module.exports = {
 				presets: [
 					'latest',
 					'react'
+				],
+				plugins: [
+					'transform-class-properties'
 				]
 			}
 		}]
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-		   compress: {
-		     warnings: false
-		   },
-		   mangle: false
-		 }),
-		'transform-class-properties'
+		// new webpack.optimize.UglifyJsPlugin({
+		//   compress: {
+		//      warnings: false
+		//   },
+		//   mangle: false
+		//  })
 	]
 };

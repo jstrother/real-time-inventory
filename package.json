@@ -19,6 +19,7 @@
     "build:html": "npm run html && npm run image && npm run font",
     "build:css": "npm run scss && npm run autoprefixer && npm run cleancss",
     "build:components": "webpack && npm run merge:js",
+    "build:socketListeners": "npm run build:components",
     "build:js": "npm run es6MyScripts && npm run merge:js",
     "build": "npm run build:html && npm run build:css && npm run build:js && npm run build:components && npm run es6Server && npm run es6SocketEvents",
     "watch:html": "onchange '*.html' -- npm run build:html",
@@ -27,7 +28,8 @@
     "watch:components": "onchange 'components/*.jsx' -- npm run build:components",
     "watch:server": "onchange 'es6-server.js' -- npm run es6Server",
     "watch:socketEvents": "onchange 'es6-socket-events.js' -- npm run es6SocketEvents",
-    "watch": "parallelshell 'npm run serve' 'npm run watch:html' 'npm run watch:css' 'npm run watch:js' 'npm run watch:components' 'npm run watch:server' 'npm run watch:socketEvents'",
+    "watch:socketListeners": "onchange 'socket-listeners/*.js' -- npm run build:socketListeners",
+    "watch": "parallelshell 'npm run serve' 'npm run watch:html' 'npm run watch:css' 'npm run watch:js' 'npm run watch:components' 'npm run watch:server' 'npm run watch:socketEvents' 'npm run watch:socketListeners'",
     "begin": "npm run build && npm run watch"
   },
   "repository": {

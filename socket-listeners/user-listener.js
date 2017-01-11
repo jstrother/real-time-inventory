@@ -5,24 +5,24 @@ import io from 'socket.io-client';
 const socket = io.connect('/');
 
 const UserSocketListener = (store) => {
-    socket.on('user:insert', (item) => {
+    socket.on('user:insert', (user) => {
         store.dispatch({
             type: 'user:insert',
-            item
+            user
         });
     });
     
-    socket.on('user:update', (item) => {
+    socket.on('user:update', (user) => {
         store.dispatch({
             type: 'user:update',
-            item
+            user
         });
     });
     
-    socket.on('user:delete', (item) => {
+    socket.on('user:delete', (user) => {
         store.dispatch({
             type: 'user:delete',
-            item
+            user
         });
     });
 };
