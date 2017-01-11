@@ -24,5 +24,5 @@ function mapStateToProps(user, item) {
     return { user, item };
 }
 
-// export default Main;
-export default connect(mapStateToProps(Main));
+export default Main;
+// export default connect(mapStateToProps(Main));

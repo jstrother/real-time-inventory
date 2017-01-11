@@ -3,3 +3,11 @@
 @import "neat/neat";
 @import "normalize";
 @import "myVariables";
+
+* {
+    border: 1px solid red;
+}
+
+#main-title {
+    text-align: center;
+}
