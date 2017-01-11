@@ -1,10 +1,10 @@
 // ./socket-listeners/user-listener.js
 // imported into index.jsx
 
-import io from 'socket.io/node_modules/socket.io-client';
+import io from 'socket.io-client';
 const socket = io.connect('/');
 
-export default (store) => {
+const UserSocketListeners = (store) => {
     socket.on('user:insert', (item) => {
         store.dispatch({
             type: 'user:insert',
@@ -25,4 +25,6 @@ export default (store) => {
             item
         });
     });
-}
+};
+
+export default UserSocketListeners;
