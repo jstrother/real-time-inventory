@@ -7,10 +7,14 @@ import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 // need components to set-up new user and see inventory
 
+const style = {
+    
+};
+
 class Main extends Component {
     render() {
         return (
-            <div>
+            <div style={style} >
                 <AppBar title="Real-Time Inventory Tracker"
                         showMenuIconButton={false}
                         id="main-title" />

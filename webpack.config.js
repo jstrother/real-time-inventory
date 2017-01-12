@@ -1,6 +1,5 @@
 const path = require('path'),
-      webpack = require('webpack'),
-      UglifyJsPlugin = require('uglify-js-plugin');
+      webpack = require('webpack');
 
 module.exports = {
 	entry: './components/index.jsx',
@@ -23,13 +22,5 @@ module.exports = {
 				]
 			}
 		}]
-	},
-	plugins: [
-		// new webpack.optimize.UglifyJsPlugin({
-		//   compress: {
-		//      warnings: false
-		//   },
-		//   mangle: false
-		//  })
-	]
+	}
 };
