@@ -1,7 +1,7 @@
 // ./socket-listeners/user-listener.js
 // imported into index.jsx
 
-import io from 'socket.io-client';
+import io from 'socket.io-client/dist/socket.io';
 const socket = io.connect('/');
 
 const UserSocketListener = (store) => {
