@@ -1,20 +1,23 @@
 // components/app.js
 // imported into ./index.js
 
-// import React from 'react';
-import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
+import React from 'react';
 import { connect } from 'react-redux';
-// need components to set-up new user and see inventory
+import AppBar from 'material-ui/AppBar';
+import InStock from './inStock.js';
+import OutOfStock from './outOfStock.js';
+import ItemOrder from './itemOrder.js';
 
-class Main extends Component {
+class Main extends React.Component {
     render() {
         return (
             <div>
                 <AppBar title="Real-Time Inventory Tracker"
                         showMenuIconButton={false}
-                        id="main-title" />
-                <h1></h1>
+                        className="mainTitle" />
+                <InStock items={this.props.items} />
+                <OutOfStock items={this.props.items} />
+                <ItemOrder items={this.props.items} />
             </div>
         );
     }

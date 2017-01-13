@@ -5,10 +5,10 @@
 @import "myVariables";
 
 * {
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
-#main-title {
+.mainTitle {
     text-align: center;
     font-size: $h1FontSize !important;
 }

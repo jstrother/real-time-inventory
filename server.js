@@ -19,42 +19,44 @@ r.connect({
     db: 'inventory'
 })
 .then((connection) => {
+    const itemsList = r.table('items'),
+        usersList = r.table('users');
     io.on('connection', (socket) => {
         socket.on('item:insert', (item) => {
-            r.table('items').insert(item).run(connection);
+            itemsList.insert(item).run(err, connection);
         });
         
         socket.on('item:update', (item) => {
             let updateItemID = item.id;
             delete item.id;
-            r.table('items').get(updateItemID).update(item).run(connection);
+            itemsList.get(updateItemID).update(item).run(err, connection);
         });
         
         socket.on('item:delete', (item) => {
             let deleteItemID = item.id;
             delete item.id;
-            r.table('items').get(deleteItemID).delete().run(connection);
+            itemsList.get(deleteItemID).delete().run(err, connection);
         });
         
         socket.on('user:insert', (user) => {
-            r.table('users').insert(user).run(connection);
+            usersList.insert(user).run(err, connection);
         });
         
         socket.on('user:update', (user) => {
             let updateUserID = user.id;
             delete user.id;
-            r.table('users').get(updateUserID).update(user).run(connection);
+            usersList.get(updateUserID).update(user).run(err, connection);
         });
         
         socket.on('user:delete', (user) => {
             let deleteUserID = user.id;
             delete user.id;
-            r.table('users').get(deleteUserID).delete().run(connection);
+            usersList.get(deleteUserID).delete().run(err, connection);
         });
         
-        r.table('items').changes({ includeInitial: true, squash: true }).run(connection)
+        itemsList.changes({ includeInitial: true, squash: true }).run(connection)
             .then(changefeedSocketEvents(socket, 'item'));
-        r.table('users').changes({ includeInitial: true, squash: true }).run(connection)
+        usersList.changes({ includeInitial: true, squash: true }).run(connection)
             .then(changefeedSocketEvents(socket, 'user'));
     });
     server.listen(PORT);
