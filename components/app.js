@@ -1,5 +1,5 @@
-// components/app.jsx
-// imported into ./index.jsx
+// components/app.js
+// imported into ./index.js
 
 // import React from 'react';
 import React, {Component} from 'react';
@@ -7,17 +7,14 @@ import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
 // need components to set-up new user and see inventory
 
-const style = {
-    
-};
-
 class Main extends Component {
     render() {
         return (
-            <div style={style} >
+            <div>
                 <AppBar title="Real-Time Inventory Tracker"
                         showMenuIconButton={false}
                         id="main-title" />
+                <h1></h1>
             </div>
         );
     }

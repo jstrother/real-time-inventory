@@ -2,14 +2,14 @@ const path = require('path'),
       webpack = require('webpack');
 
 module.exports = {
-	entry: './components/index.jsx',
+	entry: './components/index.js',
 	output: {
-		path: `${__dirname}/js`,
-		filename: 'scripts-webpack.js'
+		path: `${__dirname}/public`,
+		filename: 'scripts.js'
 	},
 	module: {
 		loaders: [{
-			test: /.jsx?$/,
+			test: /.js?$/,
 			loader: 'babel-loader',
 			exclude: /node_modules/,
 			query: {

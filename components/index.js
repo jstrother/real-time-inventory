@@ -1,4 +1,4 @@
-// components/index.jsx
+// components/index.js
 // top-level react component
 
 import React from 'react';
@@ -10,7 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import store from '../flow/store.js';
-import App from './app.jsx';
+import App from './app.js';
 // import InventorySocketListener from '../socket-listeners/inventory-listener.js';
 // import UserSocketListener from '../socket-listeners/user-listener.js';
 
