@@ -37111,11 +37111,13 @@
 							_Table.TableRow,
 							null,
 							_react2.default.createElement(_Table.TableHeaderColumn, null),
+							_react2.default.createElement(_Table.TableHeaderColumn, null),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
 								{ className: 'tableTitle' },
 								'Items Available'
 							),
+							_react2.default.createElement(_Table.TableHeaderColumn, null),
 							_react2.default.createElement(_Table.TableHeaderColumn, null)
 						),
 						_react2.default.createElement(
@@ -37135,6 +37137,11 @@
 								_Table.TableHeaderColumn,
 								null,
 								'Quantity'
+							),
+							_react2.default.createElement(
+								_Table.TableHeaderColumn,
+								null,
+								'Location'
 							)
 						)
 					),

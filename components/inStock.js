@@ -14,13 +14,16 @@ export default class InStock extends React.Component {
 				<TableHeader>
 					<TableRow>
 						<TableHeaderColumn></TableHeaderColumn>
+						<TableHeaderColumn></TableHeaderColumn>
 						<TableHeaderColumn className="tableTitle">Items Available</TableHeaderColumn>
+						<TableHeaderColumn></TableHeaderColumn>
 						<TableHeaderColumn></TableHeaderColumn>
 					</TableRow>
 					<TableRow>
 						<TableHeaderColumn>Item Name</TableHeaderColumn>
 						<TableHeaderColumn>Item Id</TableHeaderColumn>
 						<TableHeaderColumn>Quantity</TableHeaderColumn>
+						<TableHeaderColumn>Location</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
 				<TableBody>
