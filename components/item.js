@@ -6,7 +6,13 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import io from 'socket.io-client/dist/socket.io';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+// const socket = io.connect('/');
+
 export default class Item extends React.Component {
+	// checking the box will delete the item from the database
+	handleCheck(item) {
+		socket.emit('item:client:delete', item);
+	}
 
 	render() {
 		return (

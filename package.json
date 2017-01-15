@@ -2,7 +2,7 @@
   "name": "real-time-inventory",
   "version": "1.0.0",
   "description": "A simple inventory tracker in real-time",
-  "main": "scripts.js",
+  "main": "server.js",
   "scripts": {
     "scss": "node-sass --output-style compressed scss/styles.scss public/styles.css",
     "autoprefixer": "postcss -u autoprefixer -r public/styles.css",
