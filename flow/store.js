@@ -1,5 +1,5 @@
 // flow/store.js
-// imported into ../components/index.jsx
+// imported into ../components/index.js
 
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';

@@ -24,6 +24,7 @@ export default class InStock extends React.Component {
 						<TableHeaderColumn>Item Id</TableHeaderColumn>
 						<TableHeaderColumn>Quantity</TableHeaderColumn>
 						<TableHeaderColumn>Location</TableHeaderColumn>
+						<TableHeaderColumn></TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
 				<TableBody>

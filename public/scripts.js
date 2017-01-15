@@ -31646,7 +31646,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var logger = (0, _reduxLogger2.default)(); // flow/store.js
-	// imported into ../components/index.jsx
+	// imported into ../components/index.js
 
 	exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(logger));
 
@@ -32670,14 +32670,6 @@
 
 	var _inStock2 = _interopRequireDefault(_inStock);
 
-	var _outOfStock = __webpack_require__(455);
-
-	var _outOfStock2 = _interopRequireDefault(_outOfStock);
-
-	var _itemOrder = __webpack_require__(456);
-
-	var _itemOrder2 = _interopRequireDefault(_itemOrder);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32705,9 +32697,7 @@
 	                _react2.default.createElement(_AppBar2.default, { title: 'Real-Time Inventory Tracker',
 	                    showMenuIconButton: false,
 	                    className: 'mainTitle' }),
-	                _react2.default.createElement(_inStock2.default, { items: this.props.items }),
-	                _react2.default.createElement(_outOfStock2.default, { items: this.props.items }),
-	                _react2.default.createElement(_itemOrder2.default, { items: this.props.items })
+	                _react2.default.createElement(_inStock2.default, { items: this.props.items })
 	            );
 	        }
 	    }]);
@@ -32715,13 +32705,13 @@
 	    return Main;
 	}(_react2.default.Component);
 
-	function mapStateToProps(user, item) {
-	    console.log('user', user, 'item', item);
-	    return { user: user, item: item };
+	function mapStateToProps(item) {
+	    console.log('item', item);
+	    return { item: item };
 	}
 
-	exports.default = Main;
-	// export default connect(mapStateToProps(Main));
+	// export default Main;
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Main);
 
 /***/ },
 /* 381 */
@@ -37142,7 +37132,8 @@
 								_Table.TableHeaderColumn,
 								null,
 								'Location'
-							)
+							),
+							_react2.default.createElement(_Table.TableHeaderColumn, null)
 						)
 					),
 					_react2.default.createElement(_Table.TableBody, null)
@@ -40573,7 +40564,13 @@
 						_Table.TableRowColumn,
 						null,
 						this.props.item.quantity
-					)
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						this.props.item.location
+					),
+					_react2.default.createElement(_Table.TableRowColumn, null)
 				);
 			}
 		}]);
@@ -48788,190 +48785,6 @@
 	});
 	;
 	//# sourceMappingURL=socket.io.js.map
-
-/***/ },
-/* 455 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Table = __webpack_require__(431);
-
-	var _item = __webpack_require__(453);
-
-	var _item2 = _interopRequireDefault(_item);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/outOfStock.js
-	// imported into ./app.js
-
-	// to be placed in to <TableBody> when ready: this.props.items.inventoryReducer.map(item => <Item key={item.id} item={item} />)
-
-	var OutOfStock = function (_React$Component) {
-		_inherits(OutOfStock, _React$Component);
-
-		function OutOfStock() {
-			_classCallCheck(this, OutOfStock);
-
-			return _possibleConstructorReturn(this, (OutOfStock.__proto__ || Object.getPrototypeOf(OutOfStock)).apply(this, arguments));
-		}
-
-		_createClass(OutOfStock, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					_Table.Table,
-					null,
-					_react2.default.createElement(
-						_Table.TableHeader,
-						null,
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
-							_react2.default.createElement(_Table.TableHeaderColumn, null),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								{ className: 'tableTitle' },
-								'Out of Stock'
-							),
-							_react2.default.createElement(_Table.TableHeaderColumn, null)
-						),
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Item Name'
-							),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Item Id'
-							),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Quantity'
-							)
-						)
-					),
-					_react2.default.createElement(_Table.TableBody, null)
-				);
-			}
-		}]);
-
-		return OutOfStock;
-	}(_react2.default.Component);
-
-	exports.default = OutOfStock;
-
-/***/ },
-/* 456 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Table = __webpack_require__(431);
-
-	var _item = __webpack_require__(453);
-
-	var _item2 = _interopRequireDefault(_item);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/itemOrder.js
-	// imported into ./app.js
-
-	// to be placed in to <TableBody> when ready: this.props.items.inventoryReducer.map(item => <Item key={item.id} item={item} />)
-
-	var ItemOrder = function (_React$Component) {
-		_inherits(ItemOrder, _React$Component);
-
-		function ItemOrder() {
-			_classCallCheck(this, ItemOrder);
-
-			return _possibleConstructorReturn(this, (ItemOrder.__proto__ || Object.getPrototypeOf(ItemOrder)).apply(this, arguments));
-		}
-
-		_createClass(ItemOrder, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					_Table.Table,
-					null,
-					_react2.default.createElement(
-						_Table.TableHeader,
-						null,
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
-							_react2.default.createElement(_Table.TableHeaderColumn, null),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								{ className: 'tableTitle' },
-								'Your Order'
-							),
-							_react2.default.createElement(_Table.TableHeaderColumn, null)
-						),
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Item Name'
-							),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Item Id'
-							),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								null,
-								'Quantity'
-							)
-						)
-					),
-					_react2.default.createElement(_Table.TableBody, null)
-				);
-			}
-		}]);
-
-		return ItemOrder;
-	}(_react2.default.Component);
-
-	exports.default = ItemOrder;
 
 /***/ }
 /******/ ]);

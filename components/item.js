@@ -20,6 +20,10 @@ export default class Item extends React.Component {
 				<TableRowColumn>
 					{this.props.item.quantity}
 				</TableRowColumn>
+				<TableRowColumn>
+					{this.props.item.location}
+				</TableRowColumn>
+				<TableRowColumn></TableRowColumn>
 			</TableRow>
 		);
 	}
