@@ -4,7 +4,6 @@
 import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import io from 'socket.io-client/dist/socket.io';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // const socket = io.connect('/');
 
