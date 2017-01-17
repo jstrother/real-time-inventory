@@ -76,16 +76,21 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
+	var _inventoryListener = __webpack_require__(542);
+
+	var _inventoryListener2 = _interopRequireDefault(_inventoryListener);
+
+	var _userListener = __webpack_require__(543);
+
+	var _userListener2 = _interopRequireDefault(_userListener);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import InventorySocketListener from '../socket-listeners/inventory-listener.js';
-	// import UserSocketListener from '../socket-listeners/user-listener.js';
-
-	// InventorySocketListener(store);
-	// UserSocketListener(store);
 	// components/index.js
 	// top-level react component
 
+	(0, _inventoryListener2.default)(_store2.default);
+	(0, _userListener2.default)(_store2.default);
 	(0, _reactTapEventPlugin2.default)();
 
 	_reactDom2.default.render(_react2.default.createElement(
@@ -31694,9 +31699,9 @@
 	    return Main;
 	}(_react2.default.Component);
 
-	function mapStateToProps(item) {
-	    console.log('item', item);
-	    return { item: item };
+	function mapStateToProps(items) {
+	    console.log('items', items);
+	    return { items: items };
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Main);
@@ -36081,7 +36086,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					_Table.Table,
-					null,
+					{ selectable: true, multiSelectable: true },
 					_react2.default.createElement(
 						_Table.TableHeader,
 						null,
@@ -36124,7 +36129,13 @@
 							_react2.default.createElement(_Table.TableHeaderColumn, null)
 						)
 					),
-					_react2.default.createElement(_Table.TableBody, null)
+					_react2.default.createElement(
+						_Table.TableBody,
+						{ stripedRows: true, showRowHover: true },
+						this.props.items.inventoryReducer.map(function (item) {
+							return _react2.default.createElement(_item2.default, { key: item.itemId, item: item });
+						})
+					)
 				);
 			}
 		}]);
@@ -39519,7 +39530,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/item.js
 	// imported into both ./inStock.js and ./outOfStock.js
 
-	// const socket = io.connect('/');
+	var socket = _socket2.default.connect('/');
 
 	var Item = function (_React$Component) {
 		_inherits(Item, _React$Component);
@@ -47820,7 +47831,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/itemSold.js
 	// imported into ./app.js
 
-	// const socket = io.connect('/');
+	var socket = _socket2.default.connect('/');
 
 	var ItemSold = function (_React$Component) {
 		_inherits(ItemSold, _React$Component);
@@ -62970,7 +62981,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/itemReplenished.js
 	// imported into ./app.js
 
-	// const socket = io.connect('/');
+	var socket = _socket2.default.connect('/');
 
 	var ItemReplenished = function (_React$Component) {
 		_inherits(ItemReplenished, _React$Component);
@@ -64033,6 +64044,94 @@
 
 	exports.default = userReducer;
 	;
+
+/***/ },
+/* 542 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _socket = __webpack_require__(444);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var socket = _socket2.default.connect('/'); // ./socket-listeners/inventory-listener.js
+	// imported into index.jsx
+
+	var InventorySocketListener = function InventorySocketListener(store) {
+	    socket.on('item:insert', function (item) {
+	        store.dispatch({
+	            type: 'item:insert',
+	            item: item
+	        });
+	    });
+
+	    socket.on('item:update', function (item) {
+	        store.dispatch({
+	            type: 'item:update',
+	            item: item
+	        });
+	    });
+
+	    socket.on('item:delete', function (item) {
+	        store.dispatch({
+	            type: 'item:delete',
+	            item: item
+	        });
+	    });
+	};
+
+	exports.default = InventorySocketListener;
+
+/***/ },
+/* 543 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _socket = __webpack_require__(444);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var socket = _socket2.default.connect('/'); // ./socket-listeners/user-listener.js
+	// imported into index.jsx
+
+	var UserSocketListener = function UserSocketListener(store) {
+	    socket.on('user:insert', function (user) {
+	        store.dispatch({
+	            type: 'user:insert',
+	            user: user
+	        });
+	    });
+
+	    socket.on('user:update', function (user) {
+	        store.dispatch({
+	            type: 'user:update',
+	            user: user
+	        });
+	    });
+
+	    socket.on('user:delete', function (user) {
+	        store.dispatch({
+	            type: 'user:delete',
+	            user: user
+	        });
+	    });
+	};
+
+	exports.default = UserSocketListener;
 
 /***/ }
 /******/ ]);

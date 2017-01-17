@@ -5,7 +5,7 @@ import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import io from 'socket.io-client/dist/socket.io';
 
-// const socket = io.connect('/');
+const socket = io.connect('/');
 
 export default class Item extends React.Component {
 	// checking the box will delete the item from the database

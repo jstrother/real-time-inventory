@@ -12,7 +12,7 @@ import { TextField } from 'material-ui/TextField';
 import { DropDownMenu } from 'material-ui/DropDownMenu';
 
 
-// const socket = io.connect('/');
+const socket = io.connect('/');
 
 export default class ItemSold extends React.Component {
 	constructor(props) {

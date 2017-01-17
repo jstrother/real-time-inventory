@@ -23,9 +23,9 @@ class Main extends React.Component {
     }
 }
 
-function mapStateToProps(item) {
-    console.log('item', item);
-    return { item };
+function mapStateToProps(items) {
+    console.log('items', items);
+    return { items };
 }
 
 export default connect(mapStateToProps)(Main);

@@ -10,7 +10,7 @@ import Item from './item.js';
 export default class InStock extends React.Component {
 	render() {
 		return (
-			<Table>
+			<Table selectable={true} multiSelectable={true} >
 				<TableHeader>
 					<TableRow>
 						<TableHeaderColumn></TableHeaderColumn>
@@ -27,8 +27,8 @@ export default class InStock extends React.Component {
 						<TableHeaderColumn></TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
-				<TableBody>
-					{}
+				<TableBody stripedRows={true} showRowHover={true} >
+					{this.props.items.inventoryReducer.map(item => <Item key={item.itemId} item={item} />)}
 				</TableBody>
 			</Table>
 		);

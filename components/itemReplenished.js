@@ -11,7 +11,7 @@ import { RaisedButton } from 'material-ui/RaisedButton';
 import { TextField } from 'material-ui/TextField';
 import { DropDownMenu } from 'material-ui/DropDownMenu';
 
-// const socket = io.connect('/');
+const socket = io.connect('/');
 
 export default class ItemReplenished extends React.Component {
 	constructor(props) {

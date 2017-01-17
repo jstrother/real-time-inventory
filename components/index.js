@@ -11,11 +11,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import App from './app.js';
 import store from '../flow/store.js';
-// import InventorySocketListener from '../socket-listeners/inventory-listener.js';
-// import UserSocketListener from '../socket-listeners/user-listener.js';
+import InventorySocketListener from '../socket-listeners/inventory-listener.js';
+import UserSocketListener from '../socket-listeners/user-listener.js';
 
-// InventorySocketListener(store);
-// UserSocketListener(store);
+InventorySocketListener(store);
+UserSocketListener(store);
 injectTapEventPlugin();
 
 ReactDOM.render(
