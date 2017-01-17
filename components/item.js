@@ -15,7 +15,8 @@ export default class Item extends React.Component {
 
 	render() {
 		return (
-			<TableRow>
+			<TableRow 
+				hoverable={true} >
 				<TableRowColumn>
 					{this.props.item.itemName}
 				</TableRowColumn>

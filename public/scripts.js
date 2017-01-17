@@ -36086,7 +36086,9 @@
 			value: function render() {
 				return _react2.default.createElement(
 					_Table.Table,
-					{ selectable: true, multiSelectable: true },
+					{
+						selectable: true,
+						multiSelectable: true },
 					_react2.default.createElement(
 						_Table.TableHeader,
 						null,
@@ -36131,7 +36133,8 @@
 					),
 					_react2.default.createElement(
 						_Table.TableBody,
-						{ stripedRows: true, showRowHover: true },
+						{
+							stripedRows: true },
 						this.props.items.inventoryReducer.map(function (item) {
 							return _react2.default.createElement(_item2.default, { key: item.itemId, item: item });
 						})
@@ -39553,7 +39556,8 @@
 			value: function render() {
 				return _react2.default.createElement(
 					_Table.TableRow,
-					null,
+					{
+						hoverable: true },
 					_react2.default.createElement(
 						_Table.TableRowColumn,
 						null,
