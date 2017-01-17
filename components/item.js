@@ -3,20 +3,21 @@
 
 import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
+import Checkbox from 'material-ui/Checkbox';
 import io from 'socket.io-client/dist/socket.io';
 
 const socket = io.connect('/');
 
 export default class Item extends React.Component {
-	// checking the box will delete the item from the database
 	handleCheck(item) {
-		socket.emit('item:client:delete', item);
+		
 	}
 
 	render() {
 		return (
 			<TableRow 
-				hoverable={true} >
+				hoverable={true}
+				selectable={true} >
 				<TableRowColumn>
 					{this.props.item.itemName}
 				</TableRowColumn>

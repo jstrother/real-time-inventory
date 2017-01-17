@@ -36133,8 +36133,7 @@
 					),
 					_react2.default.createElement(
 						_Table.TableBody,
-						{
-							stripedRows: true },
+						null,
 						this.props.items.inventoryReducer.map(function (item) {
 							return _react2.default.createElement(_item2.default, { key: item.itemId, item: item });
 						})
@@ -39520,6 +39519,10 @@
 
 	var _Table = __webpack_require__(421);
 
+	var _Checkbox = __webpack_require__(427);
+
+	var _Checkbox2 = _interopRequireDefault(_Checkbox);
+
 	var _socket = __webpack_require__(444);
 
 	var _socket2 = _interopRequireDefault(_socket);
@@ -39546,18 +39549,15 @@
 
 		_createClass(Item, [{
 			key: 'handleCheck',
-
-			// checking the box will delete the item from the database
-			value: function handleCheck(item) {
-				socket.emit('item:client:delete', item);
-			}
+			value: function handleCheck(item) {}
 		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					_Table.TableRow,
 					{
-						hoverable: true },
+						hoverable: true,
+						selectable: true },
 					_react2.default.createElement(
 						_Table.TableRowColumn,
 						null,

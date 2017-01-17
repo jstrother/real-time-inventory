@@ -29,8 +29,7 @@ export default class InStock extends React.Component {
 						<TableHeaderColumn></TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
-				<TableBody
-					stripedRows={true} >
+				<TableBody>
 					{this.props.items.inventoryReducer.map(item => <Item key={item.itemId} item={item} />)}
 				</TableBody>
 			</Table>
