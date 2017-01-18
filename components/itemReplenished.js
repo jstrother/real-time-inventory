@@ -19,7 +19,7 @@ export default class ItemReplenished extends React.Component {
 		this.state = { open: false }
 	};
 
-	handlePopoverTap = (event) => {
+	handlePopoverAction = (event) => {
 		this.setState({
 			open: true,
 			anchor: event.currentTarget
