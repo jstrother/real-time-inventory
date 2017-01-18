@@ -76,11 +76,11 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _inventoryListener = __webpack_require__(542);
+	var _inventoryListener = __webpack_require__(541);
 
 	var _inventoryListener2 = _interopRequireDefault(_inventoryListener);
 
-	var _userListener = __webpack_require__(543);
+	var _userListener = __webpack_require__(542);
 
 	var _userListener2 = _interopRequireDefault(_userListener);
 
@@ -31700,7 +31700,6 @@
 	}(_react2.default.Component);
 
 	function mapStateToProps(items) {
-	    console.log('items', items);
 	    return { items: items };
 	}
 
@@ -36070,8 +36069,6 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/inStock.js
 	// imported into ./app.js
 
-	// to be placed in to <TableBody> when ready: this.props.items.inventoryReducer.map(item => <Item key={item.id} item={item} />)
-
 	var InStock = function (_React$Component) {
 		_inherits(InStock, _React$Component);
 
@@ -36091,23 +36088,11 @@
 						multiSelectable: true },
 					_react2.default.createElement(
 						_Table.TableHeader,
-						null,
+						{ displaySelectAll: false },
 						_react2.default.createElement(
 							_Table.TableRow,
 							null,
 							_react2.default.createElement(_Table.TableHeaderColumn, null),
-							_react2.default.createElement(_Table.TableHeaderColumn, null),
-							_react2.default.createElement(
-								_Table.TableHeaderColumn,
-								{ className: 'tableTitle' },
-								'Items Available'
-							),
-							_react2.default.createElement(_Table.TableHeaderColumn, null),
-							_react2.default.createElement(_Table.TableHeaderColumn, null)
-						),
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
 								null,
@@ -39548,9 +39533,6 @@
 		}
 
 		_createClass(Item, [{
-			key: 'handleCheck',
-			value: function handleCheck(item) {}
-		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -39558,6 +39540,7 @@
 					{
 						hoverable: true,
 						selectable: true },
+					_react2.default.createElement(_Table.TableRowColumn, null),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
 						null,
@@ -63930,17 +63913,14 @@
 
 	var _inventoryReducer2 = _interopRequireDefault(_inventoryReducer);
 
-	var _userReducer = __webpack_require__(541);
-
-	var _userReducer2 = _interopRequireDefault(_userReducer);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var reducers = (0, _redux.combineReducers)({
-		inventoryReducer: _inventoryReducer2.default,
-		userReducer: _userReducer2.default
-	}); // flow/reducers.js
+	// flow/reducers.js
 	// imported into ./state.js
+
+	var reducers = (0, _redux.combineReducers)({
+		inventoryReducer: _inventoryReducer2.default
+	});
 
 	exports.default = reducers;
 
@@ -63998,59 +63978,6 @@
 
 /***/ },
 /* 541 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	// imported into reducers.js
-
-	var userReducer = function userReducer() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	    var action = arguments[1];
-
-	    var userIndex = function userIndex() {
-	        return state.findIndex(function (thisItem) {
-	            return thisItem && thisItem.id === action.item.id;
-	        });
-	    };
-
-	    switch (action.type) {
-	        case 'user:insert':
-	            return userIndex() < 0 ? [].concat(_toConsumableArray(state), [action.item]) : state;
-
-	        case 'user:update':
-	            var updateIndex = userIndex();
-	            if (updateIndex > -1) {
-	                var updatedUser = Object.assign({}, state[updateIndex], action.user);
-	                return [].concat(_toConsumableArray(state.slice(0, updateIndex)), [updatedUser], _toConsumableArray(state.slice(updateIndex + 1)));
-	            } else {
-	                return state;
-	            }
-
-	        case 'user:delete':
-	            var deleteIndex = userIndex();
-	            if (deleteIndex > -1) {
-	                return [].concat(_toConsumableArray(state.slice(0, deleteIndex)), _toConsumableArray(state.slice(deleteIndex + 1)));
-	            } else {
-	                return state;
-	            }
-
-	        default:
-	            return state;
-	    }
-	};
-
-	exports.default = userReducer;
-	;
-
-/***/ },
-/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64094,7 +64021,7 @@
 	exports.default = InventorySocketListener;
 
 /***/ },
-/* 543 */
+/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

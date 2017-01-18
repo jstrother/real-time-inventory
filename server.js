@@ -19,8 +19,7 @@ r.connect({
     db: 'inventory'
 })
 .then((connection) => {
-    const itemsList = r.table('items'),
-        usersList = r.table('users');
+    const itemsList = r.table('items');
     io.on('connection', (socket) => {
         socket.on('item:insert', (item) => {
             itemsList.insert(item).run(err, connection);
@@ -38,26 +37,8 @@ r.connect({
             itemsList.get(deleteItemID).delete().run(err, connection);
         });
         
-        socket.on('user:insert', (user) => {
-            usersList.insert(user).run(err, connection);
-        });
-        
-        socket.on('user:update', (user) => {
-            let updateUserID = user.id;
-            delete user.id;
-            usersList.get(updateUserID).update(user).run(err, connection);
-        });
-        
-        socket.on('user:delete', (user) => {
-            let deleteUserID = user.id;
-            delete user.id;
-            usersList.get(deleteUserID).delete().run(err, connection);
-        });
-        
         itemsList.changes({ includeInitial: true, squash: true }).run(connection)
             .then(changefeedSocketEvents(socket, 'item'));
-        usersList.changes({ includeInitial: true, squash: true }).run(connection)
-            .then(changefeedSocketEvents(socket, 'user'));
     });
     server.listen(PORT);
 })

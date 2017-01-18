@@ -24,7 +24,6 @@ class Main extends React.Component {
 }
 
 function mapStateToProps(items) {
-    console.log('items', items);
     return { items };
 }
 
