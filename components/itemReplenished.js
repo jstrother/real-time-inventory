@@ -4,12 +4,11 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-import { Popover } from 'material-ui/Popover';
-import { FloatingActionButton } from 'material-ui/FloatingActionButton';
-import { ContentAdd } from 'material-ui/svg-icons/content/add';
-import { RaisedButton } from 'material-ui/RaisedButton';
-import { TextField } from 'material-ui/TextField';
-import { DropDownMenu } from 'material-ui/DropDownMenu';
+import Popover from 'material-ui/Popover';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import DropDownMenu from 'material-ui/DropDownMenu';
 
 const socket = io.connect('/');
 
@@ -26,7 +25,7 @@ export default class ItemReplenished extends React.Component {
 		});
 	};
 
-	handlePopoverClose = (event) => {
+	handlePopoverClose = () => {
 		this.setState({
 			open: false
 		});
