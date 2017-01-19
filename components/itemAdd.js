@@ -82,18 +82,18 @@ export default class ItemAdd extends React.Component {
 								hintText="Enter New Item ID"
 								errorText={this.state.error} />
 						<TextField
-								id="newItemLocation"
-								style={{
-									margin: 20
-								}}
-								hintText="Enter New Item Location"
-								errorText={this.state.error} />
-						<TextField
 								id="newItemQuantity"
 								style={{
 									margin: 20
 								}}
 								hintText="Enter New Item Quantity"
+								errorText={this.state.error} />
+						<TextField
+								id="newItemLocation"
+								style={{
+									margin: 20
+								}}
+								hintText="Enter New Item Location"
 								errorText={this.state.error} />
 						<FlatButton 
 							label="Add New Item"

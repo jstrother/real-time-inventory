@@ -47905,18 +47905,18 @@
 							hintText: 'Enter New Item ID',
 							errorText: this.state.error }),
 						_react2.default.createElement(_TextField2.default, {
-							id: 'newItemLocation',
-							style: {
-								margin: 20
-							},
-							hintText: 'Enter New Item Location',
-							errorText: this.state.error }),
-						_react2.default.createElement(_TextField2.default, {
 							id: 'newItemQuantity',
 							style: {
 								margin: 20
 							},
 							hintText: 'Enter New Item Quantity',
+							errorText: this.state.error }),
+						_react2.default.createElement(_TextField2.default, {
+							id: 'newItemLocation',
+							style: {
+								margin: 20
+							},
+							hintText: 'Enter New Item Location',
 							errorText: this.state.error }),
 						_react2.default.createElement(_FlatButton2.default, {
 							label: 'Add New Item',
