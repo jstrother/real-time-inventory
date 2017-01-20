@@ -18,6 +18,18 @@ export default class ItemAdd extends React.Component {
 		this.state = { open: false }
 	};
 
+	getInitialState() {
+      return {
+          textFieldValue: ''
+      };
+  };
+
+  handleTextFieldChange = (e) => {
+      this.setState({
+          textFieldValue: e.target.value
+      });
+  };
+
 	handlePopoverAction = (event) => {
 		this.setState({
 			open: true,
@@ -33,10 +45,10 @@ export default class ItemAdd extends React.Component {
 
 	handleNewItemInput = (event) => {
 		event.preventDefault();
-		let itemId = document.getElementById('newItemId').value,
-				itemName = document.getElementById('newItemName').value,
-				location = document.getElementById('location').value,
-				quantity = document.getElementById('quantity').value,
+		let itemId = {this.refs.newItemId.value},
+				itemName = {this.refs.newItemName.value},
+				location = {this.refs.location.value},
+				quantity = {this.refs.quantity.value},
 				item = {
 					itemId,
 					itemName,
@@ -67,7 +79,9 @@ export default class ItemAdd extends React.Component {
 						}}
 						onRequestClose={this.handlePopoverClose} >
 						<TextField
-								id="newItemName"
+								ref="newItemName"
+								value={this.state.textFieldValue}
+								onChange={this.handleTextFieldChange}
 								style={{
 									margin: 20
 								}}
@@ -75,21 +89,27 @@ export default class ItemAdd extends React.Component {
 								hintText="Enter New Item Name"
 								errorText={this.state.error} />
 						<TextField
-								id="newItemId"
+								ref="newItemId"
+								value={this.state.textFieldValue}
+								onChange={this.handleTextFieldChange}
 								style={{
 									margin: 20
 								}}
 								hintText="Enter New Item ID"
 								errorText={this.state.error} />
 						<TextField
-								id="newItemQuantity"
+								ref="newItemQuantity"
+								value={this.state.textFieldValue}
+								onChange={this.handleTextFieldChange}
 								style={{
 									margin: 20
 								}}
 								hintText="Enter New Item Quantity"
 								errorText={this.state.error} />
 						<TextField
-								id="newItemLocation"
+								ref="newItemLocation"
+								value={this.state.textFieldValue}
+								onChange={this.handleTextFieldChange}
 								style={{
 									margin: 20
 								}}
