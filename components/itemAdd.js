@@ -15,19 +15,37 @@ const socket = io.connect('/');
 export default class ItemAdd extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { open: false }
+		this.state = {
+			open: false,
+			itemNameTextFieldValue: '',
+	    itemIdTextFieldValue: '',
+	    locationTextFieldValue: '',
+      quantityTextFieldValue: ''
+    }
 	};
 
-	getInitialState() {
-      return {
-          textFieldValue: ''
-      };
+  handleItemNameTextFieldChange = (event) => {
+      this.setState({
+          itemNameTextFieldValue: event.target.value
+      });
   };
 
-  handleTextFieldChange = (e) => {
-      this.setState({
-          textFieldValue: e.target.value
-      });
+  handleItemIdTextFieldChange = (event) => {
+    this.setState({
+        itemIdTextFieldValue: event.target.value
+    });
+  };
+
+  handleQuantityTextFieldChange = (event) => {
+    this.setState({
+        quantityTextFieldValue: event.target.value
+    });
+  };
+
+  handleLocationTextFieldChange = (event) => {
+    this.setState({
+        locationTextFieldValue: event.target.value
+    });
   };
 
 	handlePopoverAction = (event) => {
@@ -38,24 +56,24 @@ export default class ItemAdd extends React.Component {
 	};
 
 	handlePopoverClose = () => {
-		this.setState({
-			open: false
-		});
+		this.setState = {
+			open: false,
+			itemNameTextFieldValue: '',
+	    itemIdTextFieldValue: '',
+	    locationTextFieldValue: '',
+      quantityTextFieldValue: ''
+    }
 	};
 
 	handleNewItemInput = (event) => {
 		event.preventDefault();
-		let itemId = {this.refs.newItemId.value},
-				itemName = {this.refs.newItemName.value},
-				location = {this.refs.location.value},
-				quantity = {this.refs.quantity.value},
-				item = {
-					itemId,
-					itemName,
-					location,
-					quantity,
+		let item = {
+					itemId: this.state.itemNameTextFieldValue,
+					itemName: this.state.itemIdTextFieldValue,
+					location: this.state.locationTextFieldValue,
+					quantity: this.state.quantityTextFieldValue,
 				};
-		console.log(itemId, itemName, location, quantity, item);
+		console.log(item);
 		socket.emit('item:client:insert', item);
 	};
 
@@ -75,50 +93,66 @@ export default class ItemAdd extends React.Component {
 						}}
 						style={{
 							display: 'flex',
-							flexFlow: 'column nowrap'
+							flexFlow: 'row wrap'
 						}}
 						onRequestClose={this.handlePopoverClose} >
-						<TextField
-								ref="newItemName"
-								value={this.state.textFieldValue}
-								onChange={this.handleTextFieldChange}
+						<div
 								style={{
-									margin: 20
-								}}
-								autoFocus="autofocus"
-								hintText="Enter New Item Name"
-								errorText={this.state.error} />
-						<TextField
-								ref="newItemId"
-								value={this.state.textFieldValue}
-								onChange={this.handleTextFieldChange}
+									display: 'flex',
+									flexFlow: 'column nowrap'
+								}} >
+							<TextField
+									id="newItemName"
+									value={this.state.textFieldValue}
+									onChange={this.handleItemNameTextFieldChange}
+									style={{
+										margin: 20
+									}}
+									autoFocus="autofocus"
+									floatingLabelText="Enter New Item Name"
+									floatingLabelFixed={true}
+									errorText={this.state.error} />
+							<TextField
+									id="newItemId"
+									value={this.state.textFieldValue}
+									onChange={this.handleItemIdTextFieldChange}
+									style={{
+										margin: 20
+									}}
+									floatingLabelText="Enter New Item ID"
+									floatingLabelFixed={true}
+									errorText={this.state.error} />
+						</div>
+						<div
 								style={{
-									margin: 20
-								}}
-								hintText="Enter New Item ID"
-								errorText={this.state.error} />
-						<TextField
-								ref="newItemQuantity"
-								value={this.state.textFieldValue}
-								onChange={this.handleTextFieldChange}
-								style={{
-									margin: 20
-								}}
-								hintText="Enter New Item Quantity"
-								errorText={this.state.error} />
-						<TextField
-								ref="newItemLocation"
-								value={this.state.textFieldValue}
-								onChange={this.handleTextFieldChange}
-								style={{
-									margin: 20
-								}}
-								hintText="Enter New Item Location"
-								errorText={this.state.error} />
-						<FlatButton 
-							label="Add New Item"
-							secondary={true}
-							onClick={this.handleNewItemInput} />
+									display: 'flex',
+									flexFlow: 'column nowrap'
+								}} >
+							<TextField
+									id="newItemQuantity"
+									value={this.state.textFieldValue}
+									onChange={this.handleQuantityTextFieldChange}
+									style={{
+										margin: 20
+									}}
+									floatingLabelText="Enter New Item Quantity"
+									floatingLabelFixed={true}
+									errorText={this.state.error} />
+							<TextField
+									id="newItemLocation"
+									value={this.state.textFieldValue}
+									onChange={this.handleLocationTextFieldChange}
+									style={{
+										margin: 20
+									}}
+									floatingLabelText="Enter New Item Location"
+									floatingLabelFixed={true}
+									errorText={this.state.error} />
+							<FlatButton 
+								label="Add New Item"
+								secondary={true}
+								onClick={this.handleNewItemInput} />
+						</div>
 				</Popover>
 				<RaisedButton
 						label="Add New Item"
