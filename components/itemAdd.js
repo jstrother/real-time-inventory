@@ -55,26 +55,23 @@ export default class ItemAdd extends React.Component {
 		});
 	};
 
-	handlePopoverClose = () => {
-		this.setState = {
+	handleNewItemInput = (event) => {
+		event.preventDefault();
+		let item = {
+					itemName: this.state.itemNameTextFieldValue,
+					itemId: this.state.itemIdTextFieldValue,
+					location: this.state.locationTextFieldValue,
+					quantity: this.state.quantityTextFieldValue,
+				};
+		console.log(item);
+		socket.emit('item:insert', item);
+		this.setState({
 			open: false,
 			itemNameTextFieldValue: '',
 	    itemIdTextFieldValue: '',
 	    locationTextFieldValue: '',
       quantityTextFieldValue: ''
-    }
-	};
-
-	handleNewItemInput = (event) => {
-		event.preventDefault();
-		let item = {
-					itemId: this.state.itemNameTextFieldValue,
-					itemName: this.state.itemIdTextFieldValue,
-					location: this.state.locationTextFieldValue,
-					quantity: this.state.quantityTextFieldValue,
-				};
-		console.log(item);
-		socket.emit('item:client:insert', item);
+    });
 	};
 
 	render() {
@@ -94,8 +91,7 @@ export default class ItemAdd extends React.Component {
 						style={{
 							display: 'flex',
 							flexFlow: 'row wrap'
-						}}
-						onRequestClose={this.handlePopoverClose} >
+						}} >
 						<div
 								style={{
 									display: 'flex',

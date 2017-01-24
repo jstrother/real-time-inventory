@@ -47863,26 +47863,23 @@
 				});
 			};
 
-			_this.handlePopoverClose = function () {
-				_this.setState = {
+			_this.handleNewItemInput = function (event) {
+				event.preventDefault();
+				var item = {
+					itemName: _this.state.itemNameTextFieldValue,
+					itemId: _this.state.itemIdTextFieldValue,
+					location: _this.state.locationTextFieldValue,
+					quantity: _this.state.quantityTextFieldValue
+				};
+				console.log(item);
+				socket.emit('item:insert', item);
+				_this.setState({
 					open: false,
 					itemNameTextFieldValue: '',
 					itemIdTextFieldValue: '',
 					locationTextFieldValue: '',
 					quantityTextFieldValue: ''
-				};
-			};
-
-			_this.handleNewItemInput = function (event) {
-				event.preventDefault();
-				var item = {
-					itemId: _this.state.itemNameTextFieldValue,
-					itemName: _this.state.itemIdTextFieldValue,
-					location: _this.state.locationTextFieldValue,
-					quantity: _this.state.quantityTextFieldValue
-				};
-				console.log(item);
-				socket.emit('item:client:insert', item);
+				});
 			};
 
 			_this.state = {
@@ -47917,8 +47914,7 @@
 							style: {
 								display: 'flex',
 								flexFlow: 'row wrap'
-							},
-							onRequestClose: this.handlePopoverClose },
+							} },
 						_react2.default.createElement(
 							'div',
 							{

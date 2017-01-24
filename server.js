@@ -22,19 +22,20 @@ r.connect({
     const itemsList = r.table('items');
     io.on('connection', (socket) => {
         socket.on('item:insert', (item) => {
-            itemsList.insert(item).run(err, connection);
+            console.log('received item:', item);
+            itemsList.insert(item).run(connection);
         });
         
         socket.on('item:update', (item) => {
             let updateItemID = item.id;
             delete item.id;
-            itemsList.get(updateItemID).update(item).run(err, connection);
+            itemsList.get(updateItemID).update(item).run(connection);
         });
         
         socket.on('item:delete', (item) => {
             let deleteItemID = item.id;
             delete item.id;
-            itemsList.get(deleteItemID).delete().run(err, connection);
+            itemsList.get(deleteItemID).delete().run(connection);
         });
         
         itemsList.changes({ includeInitial: true, squash: true }).run(connection)
