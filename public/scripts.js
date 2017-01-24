@@ -68,11 +68,11 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _store = __webpack_require__(534);
+	var _store = __webpack_require__(535);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _inventoryListener = __webpack_require__(543);
+	var _inventoryListener = __webpack_require__(544);
 
 	var _inventoryListener2 = _interopRequireDefault(_inventoryListener);
 
@@ -31653,7 +31653,7 @@
 
 	var _itemSold2 = _interopRequireDefault(_itemSold);
 
-	var _itemReplenished = __webpack_require__(533);
+	var _itemReplenished = __webpack_require__(534);
 
 	var _itemReplenished2 = _interopRequireDefault(_itemReplenished);
 
@@ -36084,29 +36084,43 @@
 						multiSelectable: true },
 					_react2.default.createElement(
 						_Table.TableHeader,
-						{ displaySelectAll: false },
+						{
+							displaySelectAll: false,
+							adjustForCheckbox: false },
 						_react2.default.createElement(
 							_Table.TableRow,
 							null,
 							_react2.default.createElement(_Table.TableHeaderColumn, null),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
-								null,
+								{
+									style: {
+										textAlign: 'center'
+									} },
 								'Item Name'
 							),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
-								null,
+								{
+									style: {
+										textAlign: 'center'
+									} },
 								'Item Id'
 							),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
-								null,
+								{
+									style: {
+										textAlign: 'center'
+									} },
 								'Quantity'
 							),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
-								null,
+								{
+									style: {
+										textAlign: 'center'
+									} },
 								'Location'
 							),
 							_react2.default.createElement(_Table.TableHeaderColumn, null)
@@ -39539,22 +39553,34 @@
 					_react2.default.createElement(_Table.TableRowColumn, null),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
-						null,
+						{
+							style: {
+								textAlign: 'center'
+							} },
 						this.props.item.itemName
 					),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
-						null,
+						{
+							style: {
+								textAlign: 'center'
+							} },
 						this.props.item.itemId
 					),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
-						null,
+						{
+							style: {
+								textAlign: 'center'
+							} },
 						this.props.item.quantity
 					),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
-						null,
+						{
+							style: {
+								textAlign: 'center'
+							} },
 						this.props.item.location
 					),
 					_react2.default.createElement(_Table.TableRowColumn, null)
@@ -47832,6 +47858,13 @@
 
 			var _this = _possibleConstructorReturn(this, (ItemAdd.__proto__ || Object.getPrototypeOf(ItemAdd)).call(this, props));
 
+			_this.handlePopoverAction = function (event) {
+				_this.setState({
+					open: true,
+					anchor: event.currentTarget
+				});
+			};
+
 			_this.handleItemNameTextFieldChange = function (event) {
 				_this.setState({
 					itemNameTextFieldValue: event.target.value
@@ -47853,13 +47886,6 @@
 			_this.handleLocationTextFieldChange = function (event) {
 				_this.setState({
 					locationTextFieldValue: event.target.value
-				});
-			};
-
-			_this.handlePopoverAction = function (event) {
-				_this.setState({
-					open: true,
-					anchor: event.currentTarget
 				});
 			};
 
@@ -47904,78 +47930,58 @@
 							open: this.state.open,
 							anchorEl: this.state.anchor,
 							anchorOrigin: {
-								horizontal: 'middle',
-								vertical: 'center'
+								horizontal: 'left',
+								vertical: 'top'
 							},
 							targetOrigin: {
-								horizontal: 'middle',
-								verticl: 'center'
+								horizontal: 'right',
+								vertical: 'bottom'
 							},
 							style: {
 								display: 'flex',
 								flexFlow: 'row wrap'
 							} },
-						_react2.default.createElement(
-							'div',
-							{
-								style: {
-									display: 'flex',
-									flexFlow: 'column nowrap'
-								} },
-							_react2.default.createElement(_TextField2.default, {
-								id: 'newItemName',
-								value: this.state.textFieldValue,
-								onChange: this.handleItemNameTextFieldChange,
-								style: {
-									margin: 20
-								},
-								autoFocus: 'autofocus',
-								floatingLabelText: 'Enter New Item Name',
-								floatingLabelFixed: true,
-								errorText: this.state.error }),
-							_react2.default.createElement(_TextField2.default, {
-								id: 'newItemId',
-								value: this.state.textFieldValue,
-								onChange: this.handleItemIdTextFieldChange,
-								style: {
-									margin: 20
-								},
-								floatingLabelText: 'Enter New Item ID',
-								floatingLabelFixed: true,
-								errorText: this.state.error })
-						),
-						_react2.default.createElement(
-							'div',
-							{
-								style: {
-									display: 'flex',
-									flexFlow: 'column nowrap'
-								} },
-							_react2.default.createElement(_TextField2.default, {
-								id: 'newItemQuantity',
-								value: this.state.textFieldValue,
-								onChange: this.handleQuantityTextFieldChange,
-								style: {
-									margin: 20
-								},
-								floatingLabelText: 'Enter New Item Quantity',
-								floatingLabelFixed: true,
-								errorText: this.state.error }),
-							_react2.default.createElement(_TextField2.default, {
-								id: 'newItemLocation',
-								value: this.state.textFieldValue,
-								onChange: this.handleLocationTextFieldChange,
-								style: {
-									margin: 20
-								},
-								floatingLabelText: 'Enter New Item Location',
-								floatingLabelFixed: true,
-								errorText: this.state.error }),
-							_react2.default.createElement(_FlatButton2.default, {
-								label: 'Add New Item',
-								secondary: true,
-								onClick: this.handleNewItemInput })
-						)
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.itemNameTextFieldValue,
+							onChange: this.handleItemNameTextFieldChange,
+							style: {
+								margin: 20
+							},
+							autoFocus: 'autofocus',
+							floatingLabelText: 'Enter New Item Name',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.itemIdTextFieldValue,
+							onChange: this.handleItemIdTextFieldChange,
+							style: {
+								margin: 20
+							},
+							floatingLabelText: 'Enter New Item ID',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.quantityTextFieldValue,
+							onChange: this.handleQuantityTextFieldChange,
+							style: {
+								margin: 20
+							},
+							floatingLabelText: 'Enter New Item Quantity',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.locationTextFieldValue,
+							onChange: this.handleLocationTextFieldChange,
+							style: {
+								margin: 20
+							},
+							floatingLabelText: 'Enter New Item Location',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Add New Item',
+							secondary: true,
+							onClick: this.handleNewItemInput })
 					),
 					_react2.default.createElement(
 						_RaisedButton2.default,
@@ -60235,6 +60241,10 @@
 
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
 
+	var _MenuItem = __webpack_require__(533);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -60261,24 +60271,69 @@
 				});
 			};
 
-			_this.handlePopoverClose = function () {
-				_this.setState({
-					open: false
-				});
-			};
-
 			_this.handleSoldItemInput = function (event) {
 				// this will handle all input from the dropdown menu of items and the text field for quantity
 			};
 
-			_this.state = { open: false };
+			_this.state = {
+				open: false,
+				quantityTextFieldValue: ''
+			};
 			return _this;
 		}
 
 		_createClass(ItemSold, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement('div', null);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Popover2.default,
+						{
+							open: this.state.open,
+							anchorEl: this.state.anchor,
+							anchorOrigin: {
+								horizontal: 'middle',
+								vertical: 'top'
+							},
+							targetOrigin: {
+								horizontal: 'middle',
+								vertical: 'bottom'
+							},
+							style: {
+								display: 'flex',
+								flexFlow: 'row wrap'
+							} },
+						_react2.default.createElement(_DropDownMenu2.default, null),
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.quantityTextFieldValue,
+							onChange: this.handleQuantityTextFieldChange,
+							style: {
+								margin: 20
+							},
+							floatingLabelText: 'Enter Updated Quantity',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(FlatButton, {
+							label: 'Add New Item',
+							secondary: true,
+							onClick: this.handleNewItemInput })
+					),
+					_react2.default.createElement(
+						_RaisedButton2.default,
+						{
+							label: 'Add New Item',
+							onClick: this.handlePopoverAction,
+							secondary: true,
+							style: {
+								position: 'fixed',
+								bottom: 20,
+								right: 20
+							} },
+						_react2.default.createElement(_add2.default, null)
+					)
+				);
 			}
 		}]);
 
@@ -63200,6 +63255,25 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _MenuItem = __webpack_require__(527);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _MenuItem2.default;
+
+/***/ },
+/* 534 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
@@ -63286,7 +63360,7 @@
 	exports.default = ItemReplenished;
 
 /***/ },
-/* 534 */
+/* 535 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63297,11 +63371,11 @@
 
 	var _redux = __webpack_require__(189);
 
-	var _reduxLogger = __webpack_require__(535);
+	var _reduxLogger = __webpack_require__(536);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _reducers = __webpack_require__(541);
+	var _reducers = __webpack_require__(542);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -63313,7 +63387,7 @@
 	exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(logger));
 
 /***/ },
-/* 535 */
+/* 536 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63324,11 +63398,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(536);
+	var _core = __webpack_require__(537);
 
-	var _helpers = __webpack_require__(537);
+	var _helpers = __webpack_require__(538);
 
-	var _defaults = __webpack_require__(540);
+	var _defaults = __webpack_require__(541);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -63431,7 +63505,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 536 */
+/* 537 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63441,9 +63515,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(537);
+	var _helpers = __webpack_require__(538);
 
-	var _diff = __webpack_require__(538);
+	var _diff = __webpack_require__(539);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -63572,7 +63646,7 @@
 	}
 
 /***/ },
-/* 537 */
+/* 538 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -63596,7 +63670,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 538 */
+/* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63606,7 +63680,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(539);
+	var _deepDiff = __webpack_require__(540);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -63692,7 +63766,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 539 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -64121,7 +64195,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 540 */
+/* 541 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64172,7 +64246,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 541 */
+/* 542 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64183,7 +64257,7 @@
 
 	var _redux = __webpack_require__(189);
 
-	var _inventoryReducer = __webpack_require__(542);
+	var _inventoryReducer = __webpack_require__(543);
 
 	var _inventoryReducer2 = _interopRequireDefault(_inventoryReducer);
 
@@ -64199,7 +64273,7 @@
 	exports.default = reducers;
 
 /***/ },
-/* 542 */
+/* 543 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -64251,7 +64325,7 @@
 	exports.default = inventoryReducer;
 
 /***/ },
-/* 543 */
+/* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

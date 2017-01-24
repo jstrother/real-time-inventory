@@ -21,7 +21,14 @@ export default class ItemAdd extends React.Component {
 	    itemIdTextFieldValue: '',
 	    locationTextFieldValue: '',
       quantityTextFieldValue: ''
-    }
+    };
+	};
+
+	handlePopoverAction = (event) => {
+		this.setState({
+			open: true,
+			anchor: event.currentTarget
+		});
 	};
 
   handleItemNameTextFieldChange = (event) => {
@@ -47,13 +54,6 @@ export default class ItemAdd extends React.Component {
         locationTextFieldValue: event.target.value
     });
   };
-
-	handlePopoverAction = (event) => {
-		this.setState({
-			open: true,
-			anchor: event.currentTarget
-		});
-	};
 
 	handleNewItemInput = (event) => {
 		event.preventDefault();
@@ -81,74 +81,58 @@ export default class ItemAdd extends React.Component {
 						open={this.state.open}
 						anchorEl={this.state.anchor}
 						anchorOrigin={{
-							horizontal: 'middle',
-							vertical: 'center'
+							horizontal: 'left',
+							vertical: 'top'
 						}}
 						targetOrigin={{
-							horizontal: 'middle',
-							verticl: 'center'
+							horizontal: 'right',
+							vertical: 'bottom'
 						}}
 						style={{
 							display: 'flex',
 							flexFlow: 'row wrap'
 						}} >
-						<div
+						<TextField
+								value={this.state.itemNameTextFieldValue}
+								onChange={this.handleItemNameTextFieldChange}
 								style={{
-									display: 'flex',
-									flexFlow: 'column nowrap'
-								}} >
-							<TextField
-									id="newItemName"
-									value={this.state.textFieldValue}
-									onChange={this.handleItemNameTextFieldChange}
-									style={{
-										margin: 20
-									}}
-									autoFocus="autofocus"
-									floatingLabelText="Enter New Item Name"
-									floatingLabelFixed={true}
-									errorText={this.state.error} />
-							<TextField
-									id="newItemId"
-									value={this.state.textFieldValue}
-									onChange={this.handleItemIdTextFieldChange}
-									style={{
-										margin: 20
-									}}
-									floatingLabelText="Enter New Item ID"
-									floatingLabelFixed={true}
-									errorText={this.state.error} />
-						</div>
-						<div
+									margin: 20
+								}}
+								autoFocus="autofocus"
+								floatingLabelText="Enter New Item Name"
+								floatingLabelFixed={true}
+								errorText={this.state.error} />
+						<TextField
+								value={this.state.itemIdTextFieldValue}
+								onChange={this.handleItemIdTextFieldChange}
 								style={{
-									display: 'flex',
-									flexFlow: 'column nowrap'
-								}} >
-							<TextField
-									id="newItemQuantity"
-									value={this.state.textFieldValue}
-									onChange={this.handleQuantityTextFieldChange}
-									style={{
-										margin: 20
-									}}
-									floatingLabelText="Enter New Item Quantity"
-									floatingLabelFixed={true}
-									errorText={this.state.error} />
-							<TextField
-									id="newItemLocation"
-									value={this.state.textFieldValue}
-									onChange={this.handleLocationTextFieldChange}
-									style={{
-										margin: 20
-									}}
-									floatingLabelText="Enter New Item Location"
-									floatingLabelFixed={true}
-									errorText={this.state.error} />
-							<FlatButton 
-								label="Add New Item"
-								secondary={true}
-								onClick={this.handleNewItemInput} />
-						</div>
+									margin: 20
+								}}
+								floatingLabelText="Enter New Item ID"
+								floatingLabelFixed={true}
+								errorText={this.state.error} />
+						<TextField
+								value={this.state.quantityTextFieldValue}
+								onChange={this.handleQuantityTextFieldChange}
+								style={{
+									margin: 20
+								}}
+								floatingLabelText="Enter New Item Quantity"
+								floatingLabelFixed={true}
+								errorText={this.state.error} />
+						<TextField
+								value={this.state.locationTextFieldValue}
+								onChange={this.handleLocationTextFieldChange}
+								style={{
+									margin: 20
+								}}
+								floatingLabelText="Enter New Item Location"
+								floatingLabelFixed={true}
+								errorText={this.state.error} />
+						<FlatButton 
+							label="Add New Item"
+							secondary={true}
+							onClick={this.handleNewItemInput} />
 				</Popover>
 				<RaisedButton
 						label="Add New Item"

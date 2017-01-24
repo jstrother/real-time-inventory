@@ -22,7 +22,6 @@ r.connect({
     const itemsList = r.table('items');
     io.on('connection', (socket) => {
         socket.on('item:insert', (item) => {
-            console.log('received item:', item);
             itemsList.insert(item).run(connection);
         });
         

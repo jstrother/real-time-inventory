@@ -15,16 +15,28 @@ export default class Item extends React.Component {
 				hoverable={true}
 				selectable={true} >
 				<TableRowColumn></TableRowColumn>
-				<TableRowColumn>
+				<TableRowColumn
+						style={{
+							textAlign: 'center'
+						}} >
 					{this.props.item.itemName}
 				</TableRowColumn>
-				<TableRowColumn>
+				<TableRowColumn
+						style={{
+							textAlign: 'center'
+						}} >
 					{this.props.item.itemId}
 				</TableRowColumn>
-				<TableRowColumn>
+				<TableRowColumn
+						style={{
+							textAlign: 'center'
+						}} >
 					{this.props.item.quantity}
 				</TableRowColumn>
-				<TableRowColumn>
+				<TableRowColumn
+						style={{
+							textAlign: 'center'
+						}} >
 					{this.props.item.location}
 				</TableRowColumn>
 				<TableRowColumn></TableRowColumn>

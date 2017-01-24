@@ -11,13 +11,35 @@ export default class InStock extends React.Component {
 			<Table
 				selectable={true}
 				multiSelectable={true} >
-				<TableHeader displaySelectAll={false}>
+				<TableHeader
+						displaySelectAll={false}
+						adjustForCheckbox={false} >
 					<TableRow>
 						<TableHeaderColumn></TableHeaderColumn>
-						<TableHeaderColumn>Item Name</TableHeaderColumn>
-						<TableHeaderColumn>Item Id</TableHeaderColumn>
-						<TableHeaderColumn>Quantity</TableHeaderColumn>
-						<TableHeaderColumn>Location</TableHeaderColumn>
+						<TableHeaderColumn
+								style={{
+									textAlign: 'center'
+								}} >
+							Item Name
+						</TableHeaderColumn>
+						<TableHeaderColumn
+								style={{
+									textAlign: 'center'
+								}} >
+							Item Id
+						</TableHeaderColumn>
+						<TableHeaderColumn
+								style={{
+									textAlign: 'center'
+								}} >
+							Quantity
+						</TableHeaderColumn>
+						<TableHeaderColumn
+								style={{
+									textAlign: 'center'
+								}} >
+							Location
+						</TableHeaderColumn>
 						<TableHeaderColumn></TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
