@@ -68,11 +68,11 @@
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _store = __webpack_require__(535);
+	var _store = __webpack_require__(536);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _inventoryListener = __webpack_require__(544);
+	var _inventoryListener = __webpack_require__(545);
 
 	var _inventoryListener2 = _interopRequireDefault(_inventoryListener);
 
@@ -31657,6 +31657,10 @@
 
 	var _itemReplenished2 = _interopRequireDefault(_itemReplenished);
 
+	var _itemDiscontinued = __webpack_require__(535);
+
+	var _itemDiscontinued2 = _interopRequireDefault(_itemDiscontinued);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31687,7 +31691,8 @@
 	                _react2.default.createElement(_inStock2.default, { items: this.props.items }),
 	                _react2.default.createElement(_itemAdd2.default, { items: this.props.items }),
 	                _react2.default.createElement(_itemSold2.default, { items: this.props.items }),
-	                _react2.default.createElement(_itemReplenished2.default, { items: this.props.items })
+	                _react2.default.createElement(_itemReplenished2.default, { items: this.props.items }),
+	                _react2.default.createElement(_itemDiscontinued2.default, { items: this.props.items })
 	            );
 	        }
 	    }]);
@@ -36097,7 +36102,7 @@
 									style: {
 										textAlign: 'center'
 									} },
-								'Item Name'
+								'Item Id'
 							),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
@@ -36105,7 +36110,7 @@
 									style: {
 										textAlign: 'center'
 									} },
-								'Item Id'
+								'Item Name'
 							),
 							_react2.default.createElement(
 								_Table.TableHeaderColumn,
@@ -39557,7 +39562,7 @@
 							style: {
 								textAlign: 'center'
 							} },
-						this.props.item.itemName
+						this.props.item.itemId
 					),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
@@ -39565,7 +39570,7 @@
 							style: {
 								textAlign: 'center'
 							} },
-						this.props.item.itemId
+						this.props.item.itemName
 					),
 					_react2.default.createElement(
 						_Table.TableRowColumn,
@@ -47938,8 +47943,7 @@
 								vertical: 'bottom'
 							},
 							style: {
-								display: 'flex',
-								flexFlow: 'row wrap'
+								width: 300
 							} },
 						_react2.default.createElement(_TextField2.default, {
 							value: this.state.itemNameTextFieldValue,
@@ -60233,6 +60237,10 @@
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
+	var _FlatButton = __webpack_require__(507);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
 	var _TextField = __webpack_require__(510);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
@@ -60271,12 +60279,35 @@
 				});
 			};
 
+			_this.handleDropDownChange = function (event, index, value) {
+				_this.setState({
+					value: value
+				});
+			};
+
+			_this.handleQuantityTextFieldChange = function (event) {
+				_this.setState({
+					quantityTextFieldValue: event.target.value
+				});
+			};
+
 			_this.handleSoldItemInput = function (event) {
-				// this will handle all input from the dropdown menu of items and the text field for quantity
+				event.preventDefault();
+				var item = {
+					itemId: _this.state.value,
+					quantityChange: _this.state.quantityTextFieldValue
+				};
+				console.log('item', item);
+				_this.setState({
+					open: false,
+					value: 1,
+					quantityTextFieldValue: ''
+				});
 			};
 
 			_this.state = {
 				open: false,
+				value: 1,
 				quantityTextFieldValue: ''
 			};
 			return _this;
@@ -60294,18 +60325,25 @@
 							open: this.state.open,
 							anchorEl: this.state.anchor,
 							anchorOrigin: {
-								horizontal: 'middle',
+								horizontal: 'left',
 								vertical: 'top'
 							},
 							targetOrigin: {
-								horizontal: 'middle',
+								horizontal: 'right',
 								vertical: 'bottom'
 							},
 							style: {
-								display: 'flex',
-								flexFlow: 'row wrap'
+								width: 300
 							} },
-						_react2.default.createElement(_DropDownMenu2.default, null),
+						_react2.default.createElement(
+							_DropDownMenu2.default,
+							{
+								value: this.state.value,
+								onChange: this.handleDropDownChange },
+							this.props.items.inventoryReducer.map(function (item) {
+								return _react2.default.createElement(_MenuItem2.default, { key: item.itemId, value: item.itemId, primaryText: item.itemName });
+							})
+						),
 						_react2.default.createElement(_TextField2.default, {
 							value: this.state.quantityTextFieldValue,
 							onChange: this.handleQuantityTextFieldChange,
@@ -60315,21 +60353,21 @@
 							floatingLabelText: 'Enter Updated Quantity',
 							floatingLabelFixed: true,
 							errorText: this.state.error }),
-						_react2.default.createElement(FlatButton, {
-							label: 'Add New Item',
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Sell Selected Item',
 							secondary: true,
-							onClick: this.handleNewItemInput })
+							onClick: this.handleSoldItemInput })
 					),
 					_react2.default.createElement(
 						_RaisedButton2.default,
 						{
-							label: 'Add New Item',
+							label: 'Sell Item',
 							onClick: this.handlePopoverAction,
 							secondary: true,
 							style: {
 								position: 'fixed',
 								bottom: 20,
-								right: 20
+								right: 220
 							} },
 						_react2.default.createElement(_add2.default, null)
 					)
@@ -63333,12 +63371,6 @@
 				});
 			};
 
-			_this.handlePopoverClose = function () {
-				_this.setState({
-					open: false
-				});
-			};
-
 			_this.handleReplenishedItemInput = function (event) {
 				// this will handle all input from the dropdown menu of items and the text field for quantity
 			};
@@ -63366,16 +63398,102 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _socket = __webpack_require__(446);
+
+	var _socket2 = _interopRequireDefault(_socket);
+
+	var _Popover = __webpack_require__(497);
+
+	var _Popover2 = _interopRequireDefault(_Popover);
+
+	var _add = __webpack_require__(504);
+
+	var _add2 = _interopRequireDefault(_add);
+
+	var _RaisedButton = __webpack_require__(505);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _TextField = __webpack_require__(510);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _DropDownMenu = __webpack_require__(517);
+
+	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // ./components/itemDiscontinued.js
+	// imported into ./app.js
+
+	var socket = _socket2.default.connect('/');
+
+	var ItemDiscontinued = function (_React$Component) {
+		_inherits(ItemDiscontinued, _React$Component);
+
+		function ItemDiscontinued(props) {
+			_classCallCheck(this, ItemDiscontinued);
+
+			var _this = _possibleConstructorReturn(this, (ItemDiscontinued.__proto__ || Object.getPrototypeOf(ItemDiscontinued)).call(this, props));
+
+			_this.handlePopoverAction = function (event) {
+				_this.setState({
+					open: true,
+					anchor: event.currentTarget
+				});
+			};
+
+			_this.handleDiscontinuedItemInput = function (event) {
+				// this will handle all input from the dropdown menu of items and the text field for quantity
+			};
+
+			_this.state = { open: false };
+			return _this;
+		}
+
+		_createClass(ItemDiscontinued, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement('div', null);
+			}
+		}]);
+
+		return ItemDiscontinued;
+	}(_react2.default.Component);
+
+	exports.default = ItemDiscontinued;
+
+/***/ },
+/* 536 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
 	var _redux = __webpack_require__(189);
 
-	var _reduxLogger = __webpack_require__(536);
+	var _reduxLogger = __webpack_require__(537);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _reducers = __webpack_require__(542);
+	var _reducers = __webpack_require__(543);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -63387,7 +63505,7 @@
 	exports.default = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(logger));
 
 /***/ },
-/* 536 */
+/* 537 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63398,11 +63516,11 @@
 	  value: true
 	});
 
-	var _core = __webpack_require__(537);
+	var _core = __webpack_require__(538);
 
-	var _helpers = __webpack_require__(538);
+	var _helpers = __webpack_require__(539);
 
-	var _defaults = __webpack_require__(541);
+	var _defaults = __webpack_require__(542);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -63505,7 +63623,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 537 */
+/* 538 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63515,9 +63633,9 @@
 	});
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(538);
+	var _helpers = __webpack_require__(539);
 
-	var _diff = __webpack_require__(539);
+	var _diff = __webpack_require__(540);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -63646,7 +63764,7 @@
 	}
 
 /***/ },
-/* 538 */
+/* 539 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -63670,7 +63788,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 539 */
+/* 540 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -63680,7 +63798,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(540);
+	var _deepDiff = __webpack_require__(541);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -63766,7 +63884,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 540 */
+/* 541 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -64195,7 +64313,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 541 */
+/* 542 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -64246,7 +64364,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 542 */
+/* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -64257,7 +64375,7 @@
 
 	var _redux = __webpack_require__(189);
 
-	var _inventoryReducer = __webpack_require__(543);
+	var _inventoryReducer = __webpack_require__(544);
 
 	var _inventoryReducer2 = _interopRequireDefault(_inventoryReducer);
 
@@ -64273,7 +64391,7 @@
 	exports.default = reducers;
 
 /***/ },
-/* 543 */
+/* 544 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -64325,7 +64443,7 @@
 	exports.default = inventoryReducer;
 
 /***/ },
-/* 544 */
+/* 545 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

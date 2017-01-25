@@ -89,8 +89,7 @@ export default class ItemAdd extends React.Component {
 							vertical: 'bottom'
 						}}
 						style={{
-							display: 'flex',
-							flexFlow: 'row wrap'
+							width: 300
 						}} >
 						<TextField
 								value={this.state.itemNameTextFieldValue}

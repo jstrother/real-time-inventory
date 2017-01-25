@@ -1,4 +1,4 @@
-// ./components/itemReplenished.js
+// ./components/itemDiscontinued.js
 // imported into ./app.js
 
 import React from 'react';
@@ -12,7 +12,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 
 const socket = io.connect('/');
 
-export default class ItemReplenished extends React.Component {
+export default class ItemDiscontinued extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { open: false }
@@ -25,7 +25,7 @@ export default class ItemReplenished extends React.Component {
 		});
 	};
 
-	handleReplenishedItemInput = (event) => {
+	handleDiscontinuedItemInput = (event) => {
 		// this will handle all input from the dropdown menu of items and the text field for quantity
 	};
 

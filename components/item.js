@@ -19,13 +19,13 @@ export default class Item extends React.Component {
 						style={{
 							textAlign: 'center'
 						}} >
-					{this.props.item.itemName}
+					{this.props.item.itemId}
 				</TableRowColumn>
 				<TableRowColumn
 						style={{
 							textAlign: 'center'
 						}} >
-					{this.props.item.itemId}
+					{this.props.item.itemName}
 				</TableRowColumn>
 				<TableRowColumn
 						style={{

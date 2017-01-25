@@ -8,6 +8,7 @@ import InStock from './inStock.js';
 import ItemAdd from './itemAdd.js';
 import ItemSold from './itemSold.js';
 import ItemReplenished from './itemReplenished.js';
+import ItemDiscontinued from './itemDiscontinued.js';
 
 class Main extends React.Component {
     render() {
@@ -20,6 +21,7 @@ class Main extends React.Component {
                 <ItemAdd items={this.props.items} />
                 <ItemSold items={this.props.items} />
                 <ItemReplenished items={this.props.items} />
+                <ItemDiscontinued items={this.props.items} />
             </div>
         );
     }

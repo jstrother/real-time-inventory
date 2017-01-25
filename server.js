@@ -25,10 +25,16 @@ r.connect({
             itemsList.insert(item).run(connection);
         });
         
-        socket.on('item:update', (item) => {
-            let updateItemID = item.id;
+        socket.on('item:sold', (item) => {
+            let soldItemID = item.id;
             delete item.id;
-            itemsList.get(updateItemID).update(item).run(connection);
+            itemsList.get(soldItemID).update(item).run(connection);
+        });
+        
+        socket.on('item:replenished', (item) => {
+            let replenishedItemID = item.id;
+            delete item.id;
+            itemsList.get(replenishedItemID).update(item).run(connection);
         });
         
         socket.on('item:delete', (item) => {

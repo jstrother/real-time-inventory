@@ -20,13 +20,13 @@ export default class InStock extends React.Component {
 								style={{
 									textAlign: 'center'
 								}} >
-							Item Name
+							Item Id
 						</TableHeaderColumn>
 						<TableHeaderColumn
 								style={{
 									textAlign: 'center'
 								}} >
-							Item Id
+							Item Name
 						</TableHeaderColumn>
 						<TableHeaderColumn
 								style={{

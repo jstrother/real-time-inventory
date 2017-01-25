@@ -7,6 +7,7 @@ import io from 'socket.io-client';
 import Popover from 'material-ui/Popover';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -18,6 +19,7 @@ export default class ItemSold extends React.Component {
 		super(props);
 		this.state = {
 			open: false,
+			value: 1,
       quantityTextFieldValue: ''
     };
 	};
@@ -29,8 +31,30 @@ export default class ItemSold extends React.Component {
 		});
 	};
 
+	handleDropDownChange = (event, index, value) => {
+		this.setState({
+			value
+		});
+	}
+
+	handleQuantityTextFieldChange = (event) => {
+    this.setState({
+        quantityTextFieldValue: event.target.value
+    });
+  };
+
 	handleSoldItemInput = (event) => {
-		// this will handle all input from the dropdown menu of items and the text field for quantity
+		event.preventDefault();
+		let item = {
+			itemId: this.state.value,
+			quantityChange: this.state.quantityTextFieldValue
+		};
+		console.log('item', item);
+		this.setState({
+			open: false,
+			value: 1,
+      quantityTextFieldValue: ''
+		})
 	};
 
 	render() {
@@ -40,21 +64,20 @@ export default class ItemSold extends React.Component {
 						open={this.state.open}
 						anchorEl={this.state.anchor}
 						anchorOrigin={{
-							horizontal: 'middle',
+							horizontal: 'left',
 							vertical: 'top'
 						}}
 						targetOrigin={{
-							horizontal: 'middle',
+							horizontal: 'right',
 							vertical: 'bottom'
 						}}
 						style={{
-							display: 'flex',
-							flexFlow: 'row wrap'
+							width: 300
 						}} >
-						<DropDownMenu>
-							{
-								// set up a function to iterate over the number of itemNames and create a MenuItem for each
-							}
+						<DropDownMenu
+								value={this.state.value}
+								onChange={this.handleDropDownChange} >
+							{this.props.items.inventoryReducer.map(item => <MenuItem key={item.itemId} value={item.itemId} primaryText={item.itemName} />)}
 						</DropDownMenu>
 						<TextField
 								value={this.state.quantityTextFieldValue}
@@ -66,18 +89,18 @@ export default class ItemSold extends React.Component {
 								floatingLabelFixed={true}
 								errorText={this.state.error} />
 						<FlatButton 
-							label="Add New Item"
+							label="Sell Selected Item"
 							secondary={true}
-							onClick={this.handleNewItemInput} />
+							onClick={this.handleSoldItemInput} />
 				</Popover>
 				<RaisedButton
-						label="Add New Item"
+						label="Sell Item"
 						onClick={this.handlePopoverAction}
 						secondary={true}
 						style={{
 							position: 'fixed',
 							bottom: 20,
-							right: 20
+							right: 220
 						}} >
 					<ContentAdd />
 				</RaisedButton>
