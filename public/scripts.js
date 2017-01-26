@@ -47898,9 +47898,9 @@
 				event.preventDefault();
 				var item = {
 					itemName: _this.state.itemNameTextFieldValue,
-					itemId: _this.state.itemIdTextFieldValue,
+					itemId: parseInt(_this.state.itemIdTextFieldValue),
 					location: _this.state.locationTextFieldValue,
-					quantity: _this.state.quantityTextFieldValue
+					quantity: parseInt(_this.state.quantityTextFieldValue)
 				};
 				console.log(item);
 				socket.emit('item:insert', item);
@@ -60294,10 +60294,11 @@
 			_this.handleSoldItemInput = function (event) {
 				event.preventDefault();
 				var item = {
-					itemId: _this.state.value,
-					quantityChange: _this.state.quantityTextFieldValue
+					itemId: parseInt(_this.state.value),
+					quantityChange: parseInt(_this.state.quantityTextFieldValue)
 				};
-				console.log('item', item);
+				console.log('item from front-end', item);
+				socket.emit('item:sold', item);
 				_this.setState({
 					open: false,
 					value: 1,
@@ -60350,7 +60351,7 @@
 							style: {
 								margin: 20
 							},
-							floatingLabelText: 'Enter Updated Quantity',
+							floatingLabelText: 'Enter Quantity Sold',
 							floatingLabelFixed: true,
 							errorText: this.state.error }),
 						_react2.default.createElement(_FlatButton2.default, {

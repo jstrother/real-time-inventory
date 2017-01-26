@@ -26,9 +26,12 @@ r.connect({
         });
         
         socket.on('item:sold', (item) => {
-            let soldItemID = item.id;
-            delete item.id;
-            itemsList.get(soldItemID).update(item).run(connection);
+            console.log('item from server', item);
+            let soldItemID = item.itemId,
+                quantityChange = item.quantityChange;
+            itemsList.filter({itemId: soldItemID}).update({
+                quantity: r.row('quantity').sub(quantityChange)
+            }).run(connection);
         });
         
         socket.on('item:replenished', (item) => {

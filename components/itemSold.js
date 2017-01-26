@@ -46,10 +46,11 @@ export default class ItemSold extends React.Component {
 	handleSoldItemInput = (event) => {
 		event.preventDefault();
 		let item = {
-			itemId: this.state.value,
-			quantityChange: this.state.quantityTextFieldValue
+			itemId: parseInt(this.state.value),
+			quantityChange: parseInt(this.state.quantityTextFieldValue)
 		};
-		console.log('item', item);
+		console.log('item from front-end', item);
+		socket.emit('item:sold', item);
 		this.setState({
 			open: false,
 			value: 1,
@@ -85,7 +86,7 @@ export default class ItemSold extends React.Component {
 								style={{
 									margin: 20
 								}}
-								floatingLabelText="Enter Updated Quantity"
+								floatingLabelText="Enter Quantity Sold"
 								floatingLabelFixed={true}
 								errorText={this.state.error} />
 						<FlatButton 

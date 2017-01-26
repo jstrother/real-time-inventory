@@ -59,9 +59,9 @@ export default class ItemAdd extends React.Component {
 		event.preventDefault();
 		let item = {
 					itemName: this.state.itemNameTextFieldValue,
-					itemId: this.state.itemIdTextFieldValue,
+					itemId: parseInt(this.state.itemIdTextFieldValue),
 					location: this.state.locationTextFieldValue,
-					quantity: this.state.quantityTextFieldValue,
+					quantity: parseInt(this.state.quantityTextFieldValue)
 				};
 		console.log(item);
 		socket.emit('item:insert', item);
