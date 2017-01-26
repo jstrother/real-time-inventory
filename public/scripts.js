@@ -47894,6 +47894,16 @@
 				});
 			};
 
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false,
+					itemNameTextFieldValue: '',
+					itemIdTextFieldValue: '',
+					locationTextFieldValue: '',
+					quantityTextFieldValue: ''
+				});
+			};
+
 			_this.handleNewItemInput = function (event) {
 				event.preventDefault();
 				var item = {
@@ -47985,7 +47995,11 @@
 						_react2.default.createElement(_FlatButton2.default, {
 							label: 'Add New Item',
 							secondary: true,
-							onClick: this.handleNewItemInput })
+							onClick: this.handleNewItemInput }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Close This Window',
+							secondary: true,
+							onClick: this.handlePopoverClose })
 					),
 					_react2.default.createElement(
 						_RaisedButton2.default,
@@ -60285,6 +60299,14 @@
 				});
 			};
 
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false,
+					value: 1,
+					quantityTextFieldValue: ''
+				});
+			};
+
 			_this.handleQuantityTextFieldChange = function (event) {
 				_this.setState({
 					quantityTextFieldValue: event.target.value
@@ -60297,7 +60319,6 @@
 					itemId: parseInt(_this.state.value),
 					quantityChange: parseInt(_this.state.quantityTextFieldValue)
 				};
-				console.log('item from front-end', item);
 				socket.emit('item:sold', item);
 				_this.setState({
 					open: false,
@@ -60357,7 +60378,11 @@
 						_react2.default.createElement(_FlatButton2.default, {
 							label: 'Sell Selected Item',
 							secondary: true,
-							onClick: this.handleSoldItemInput })
+							onClick: this.handleSoldItemInput }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Close This Window',
+							secondary: true,
+							onClick: this.handlePopoverClose })
 					),
 					_react2.default.createElement(
 						_RaisedButton2.default,
@@ -60368,7 +60393,7 @@
 							style: {
 								position: 'fixed',
 								bottom: 20,
-								right: 220
+								right: 190
 							} },
 						_react2.default.createElement(_add2.default, null)
 					)
@@ -63338,6 +63363,10 @@
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
+	var _FlatButton = __webpack_require__(507);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
 	var _TextField = __webpack_require__(510);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
@@ -63345,6 +63374,10 @@
 	var _DropDownMenu = __webpack_require__(517);
 
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
+
+	var _MenuItem = __webpack_require__(533);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63372,18 +63405,111 @@
 				});
 			};
 
-			_this.handleReplenishedItemInput = function (event) {
-				// this will handle all input from the dropdown menu of items and the text field for quantity
+			_this.handleDropDownChange = function (event, index, value) {
+				_this.setState({
+					value: value
+				});
 			};
 
-			_this.state = { open: false };
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false,
+					value: 1,
+					quantityTextFieldValue: ''
+				});
+			};
+
+			_this.handleQuantityTextFieldChange = function (event) {
+				_this.setState({
+					quantityTextFieldValue: event.target.value
+				});
+			};
+
+			_this.handleReplenishedItemInput = function (event) {
+				event.preventDefault();
+				var item = {
+					itemId: parseInt(_this.state.value),
+					quantityChange: parseInt(_this.state.quantityTextFieldValue)
+				};
+				socket.emit('item:replenished', item);
+				_this.setState({
+					open: false,
+					value: 1,
+					quantityTextFieldValue: ''
+				});
+			};
+
+			_this.state = {
+				open: false,
+				value: 1,
+				quantityTextFieldValue: ''
+			};
 			return _this;
 		}
 
 		_createClass(ItemReplenished, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement('div', null);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Popover2.default,
+						{
+							open: this.state.open,
+							anchorEl: this.state.anchor,
+							anchorOrigin: {
+								horizontal: 'left',
+								vertical: 'top'
+							},
+							targetOrigin: {
+								horizontal: 'right',
+								vertical: 'bottom'
+							},
+							style: {
+								width: 300
+							} },
+						_react2.default.createElement(
+							_DropDownMenu2.default,
+							{
+								value: this.state.value,
+								onChange: this.handleDropDownChange },
+							this.props.items.inventoryReducer.map(function (item) {
+								return _react2.default.createElement(_MenuItem2.default, { key: item.itemId, value: item.itemId, primaryText: item.itemName });
+							})
+						),
+						_react2.default.createElement(_TextField2.default, {
+							value: this.state.quantityTextFieldValue,
+							onChange: this.handleQuantityTextFieldChange,
+							style: {
+								margin: 20
+							},
+							floatingLabelText: 'Enter Quantity Replenished',
+							floatingLabelFixed: true,
+							errorText: this.state.error }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Replenish Selected Item',
+							secondary: true,
+							onClick: this.handleReplenishedItemInput }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Close This Window',
+							secondary: true,
+							onClick: this.handlePopoverClose })
+					),
+					_react2.default.createElement(
+						_RaisedButton2.default,
+						{
+							label: 'Replenish Item',
+							onClick: this.handlePopoverAction,
+							secondary: true,
+							style: {
+								position: 'fixed',
+								bottom: 20,
+								left: 220
+							} },
+						_react2.default.createElement(_add2.default, null)
+					)
+				);
 			}
 		}]);
 
@@ -63424,6 +63550,10 @@
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
+	var _FlatButton = __webpack_require__(507);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
 	var _TextField = __webpack_require__(510);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
@@ -63431,6 +63561,10 @@
 	var _DropDownMenu = __webpack_require__(517);
 
 	var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
+
+	var _MenuItem = __webpack_require__(533);
+
+	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63458,18 +63592,92 @@
 				});
 			};
 
-			_this.handleDiscontinuedItemInput = function (event) {
-				// this will handle all input from the dropdown menu of items and the text field for quantity
+			_this.handleDropDownChange = function (event, index, value) {
+				_this.setState({
+					value: value
+				});
 			};
 
-			_this.state = { open: false };
+			_this.handlePopoverClose = function () {
+				_this.setState({
+					open: false,
+					value: 1
+				});
+			};
+
+			_this.handleDiscontinuedItemInput = function (event) {
+				event.preventDefault();
+				var item = {
+					itemId: parseInt(_this.state.value)
+				};
+				socket.emit('item:delete', item);
+				_this.setState({
+					open: false,
+					value: 1
+				});
+			};
+
+			_this.state = {
+				open: false,
+				value: 1
+			};
 			return _this;
 		}
 
 		_createClass(ItemDiscontinued, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement('div', null);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						_Popover2.default,
+						{
+							open: this.state.open,
+							anchorEl: this.state.anchor,
+							anchorOrigin: {
+								horizontal: 'left',
+								vertical: 'top'
+							},
+							targetOrigin: {
+								horizontal: 'right',
+								vertical: 'bottom'
+							},
+							style: {
+								width: 300
+							} },
+						_react2.default.createElement(
+							_DropDownMenu2.default,
+							{
+								value: this.state.value,
+								onChange: this.handleDropDownChange },
+							this.props.items.inventoryReducer.map(function (item) {
+								return _react2.default.createElement(_MenuItem2.default, { key: item.itemId, value: item.itemId, primaryText: item.itemName });
+							})
+						),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Discontinue Selected Item',
+							secondary: true,
+							onClick: this.handleDiscontinuedItemInput }),
+						_react2.default.createElement(_FlatButton2.default, {
+							label: 'Close This Window',
+							secondary: true,
+							onClick: this.handlePopoverClose })
+					),
+					_react2.default.createElement(
+						_RaisedButton2.default,
+						{
+							label: 'Discontinue Item',
+							onClick: this.handlePopoverAction,
+							secondary: true,
+							style: {
+								position: 'fixed',
+								bottom: 20,
+								left: 20
+							} },
+						_react2.default.createElement(_add2.default, null)
+					)
+				);
 			}
 		}]);
 

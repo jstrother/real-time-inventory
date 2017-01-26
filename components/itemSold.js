@@ -35,7 +35,15 @@ export default class ItemSold extends React.Component {
 		this.setState({
 			value
 		});
-	}
+	};
+
+  handlePopoverClose = () => {
+  	this.setState({
+			open: false,
+			value: 1,
+      quantityTextFieldValue: ''
+		});
+  };
 
 	handleQuantityTextFieldChange = (event) => {
     this.setState({
@@ -49,13 +57,12 @@ export default class ItemSold extends React.Component {
 			itemId: parseInt(this.state.value),
 			quantityChange: parseInt(this.state.quantityTextFieldValue)
 		};
-		console.log('item from front-end', item);
 		socket.emit('item:sold', item);
 		this.setState({
 			open: false,
 			value: 1,
       quantityTextFieldValue: ''
-		})
+		});
 	};
 
 	render() {
@@ -93,6 +100,10 @@ export default class ItemSold extends React.Component {
 							label="Sell Selected Item"
 							secondary={true}
 							onClick={this.handleSoldItemInput} />
+						<FlatButton
+							label="Close This Window"
+							secondary={true}
+							onClick={this.handlePopoverClose} />
 				</Popover>
 				<RaisedButton
 						label="Sell Item"
@@ -101,7 +112,7 @@ export default class ItemSold extends React.Component {
 						style={{
 							position: 'fixed',
 							bottom: 20,
-							right: 220
+							right: 190
 						}} >
 					<ContentAdd />
 				</RaisedButton>

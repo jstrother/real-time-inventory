@@ -26,7 +26,6 @@ r.connect({
         });
         
         socket.on('item:sold', (item) => {
-            console.log('item from server', item);
             let soldItemID = item.itemId,
                 quantityChange = item.quantityChange;
             itemsList.filter({itemId: soldItemID}).update({
@@ -35,15 +34,16 @@ r.connect({
         });
         
         socket.on('item:replenished', (item) => {
-            let replenishedItemID = item.id;
-            delete item.id;
-            itemsList.get(replenishedItemID).update(item).run(connection);
+            let replenishedItemID = item.itemId,
+                quantityChange = item.quantityChange;
+            itemsList.filter({itemId: replenishedItemID}).update({
+                quantity: r.row('quantity').add(quantityChange)
+            }).run(connection);
         });
         
         socket.on('item:delete', (item) => {
-            let deleteItemID = item.id;
-            delete item.id;
-            itemsList.get(deleteItemID).delete().run(connection);
+            let deleteItemID = item.itemId;
+            itemsList.filter({itemId: deleteItemID}).delete().run(connection);
         });
         
         itemsList.changes({ includeInitial: true, squash: true }).run(connection)

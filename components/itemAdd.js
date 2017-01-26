@@ -55,6 +55,16 @@ export default class ItemAdd extends React.Component {
     });
   };
 
+  handlePopoverClose = () => {
+  	this.setState({
+			open: false,
+			itemNameTextFieldValue: '',
+	    itemIdTextFieldValue: '',
+	    locationTextFieldValue: '',
+      quantityTextFieldValue: ''
+    });
+  };
+
 	handleNewItemInput = (event) => {
 		event.preventDefault();
 		let item = {
@@ -132,6 +142,10 @@ export default class ItemAdd extends React.Component {
 							label="Add New Item"
 							secondary={true}
 							onClick={this.handleNewItemInput} />
+						<FlatButton
+							label="Close This Window"
+							secondary={true}
+							onClick={this.handlePopoverClose} />
 				</Popover>
 				<RaisedButton
 						label="Add New Item"
