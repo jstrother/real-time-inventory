@@ -7,7 +7,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
-const PORT = 8080;
+const PORT = 9000;
 
 app.use(express.static('public'));
 app.get('*', (req, res) => {
