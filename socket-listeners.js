@@ -1,10 +1,10 @@
 // ./socket-listeners/inventory-listener.js
 // imported into index.jsx
 
-import io from 'socket.io-client/dist/socket.io';
+import io from 'socket.io-client';
 const socket = io.connect('/');
 
-const InventorySocketListener = (store) => {
+export const InventorySocketListener = (store) => {
     socket.on('item:insert', (item) => {
         store.dispatch({
             type: 'item:insert',
@@ -26,5 +26,3 @@ const InventorySocketListener = (store) => {
         });
     });
 };
-
-export default InventorySocketListener;

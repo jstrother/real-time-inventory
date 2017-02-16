@@ -17,8 +17,9 @@
     "build": "npm run build:html && npm run build:css && npm run build:js",
     "watch:html": "onchange \"./*.html\" -- npm run build:html",
     "watch:css": "onchange \"./scss/*.scss\" -- npm run build:css",
-    "watch:js": "onchange \"./components/*.js\" -- npm run build:js",
-    "watch": "parallelshell \"npm run watch:html\" \"npm run watch:css\" \"npm run watch:js\"",
+    "watch:components": "onchange \"./components/*.js\" -- npm run build:js",
+    "watch:socketListener": "onchange \"./socket-listeners.js\" -- npm run build:js",
+    "watch": "parallelshell \"npm run watch:html\" \"npm run watch:css\" \"npm run watch:components\" \"npm run watch:socketListener\"",
     "begin": "npm run build && npm run watch"
   },
   "repository": {

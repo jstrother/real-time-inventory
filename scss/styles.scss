@@ -3,12 +3,8 @@
 @import "neat/neat";
 @import "normalize";
 @import "myVariables";
+@import "mainTitle";
 
 * {
-    // border: 1px solid red;
-}
-
-.mainTitle {
-    text-align: center;
-    font-size: $h1FontSize !important;
+    border: 1px solid red;
 }
