@@ -1,4 +1,7 @@
 .mainTitle {
-    text-align: center;
-    font-size: $h1FontSize !important;
+    display: flex;
+    h1 {
+    	margin: auto;
+    	font-size: $h1FontSize;
+    }
 }
