@@ -72,9 +72,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _socketListeners.InventorySocketListener)(_store2.default); // components/index.js
+	(0, _socketListeners.ItemSocketListener)(_store2.default); // components/index.js
 	// top-level react component
 
+	(0, _socketListeners.UserSocketListener)(_store2.default); //once users gets set up and running, i want to see if i can finally access two different db's
 	(0, _reactTapEventPlugin2.default)();
 
 	_reactDom2.default.render(_react2.default.createElement(
@@ -25191,7 +25192,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.InventorySocketListener = undefined;
+	exports.UserSocketListener = exports.ItemSocketListener = undefined;
 
 	var _socket = __webpack_require__(233);
 
@@ -25202,7 +25203,7 @@
 	var socket = _socket2.default.connect('/'); // ./socket-listeners/inventory-listener.js
 	// imported into index.jsx
 
-	var InventorySocketListener = exports.InventorySocketListener = function InventorySocketListener(store) {
+	var ItemSocketListener = exports.ItemSocketListener = function ItemSocketListener(store) {
 	    socket.on('item:insert', function (item) {
 	        store.dispatch({
 	            type: 'item:insert',
@@ -25210,9 +25211,16 @@
 	        });
 	    });
 
-	    socket.on('item:update', function (item) {
+	    socket.on('item:sold', function (item) {
 	        store.dispatch({
-	            type: 'item:update',
+	            type: 'item:sold',
+	            item: item
+	        });
+	    });
+
+	    socket.on('item:replenished', function (item) {
+	        store.dispatch({
+	            type: 'item:replenished',
 	            item: item
 	        });
 	    });
@@ -25221,6 +25229,29 @@
 	        store.dispatch({
 	            type: 'item:delete',
 	            item: item
+	        });
+	    });
+	};
+
+	var UserSocketListener = exports.UserSocketListener = function UserSocketListener(store) {
+	    socket.on('user:insert', function (user) {
+	        store.dispatch({
+	            type: 'user:insert',
+	            user: user
+	        });
+	    });
+
+	    socket.on('user:update', function (user) {
+	        store.dispatch({
+	            type: 'user:update',
+	            user: user
+	        });
+	    });
+
+	    socket.on('user:delete', function (user) {
+	        store.dispatch({
+	            type: 'user:delete',
+	            user: user
 	        });
 	    });
 	};
