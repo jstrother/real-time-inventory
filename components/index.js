@@ -6,17 +6,20 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import App from './app.js';
 import store from '../flow/store.js';
-import { ItemSocketListener, UserSocketListener } from '../socket-listeners.js';
+import InventorySocketListener from '../socket-listeners/inventory-listener.js';
 
-ItemSocketListener(store);
-UserSocketListener(store); //once users gets set up and running, i want to see if i can finally access two different db's
+InventorySocketListener(store);
 injectTapEventPlugin();
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<MuiThemeProvider>
+			<App />
+		</MuiThemeProvider>
 	</Provider>,
 	document.getElementById('app')
 );
