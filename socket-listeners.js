@@ -1,4 +1,4 @@
-// ./socket-listeners/inventory-listener.js
+// ./socket-listeners.js
 // imported into index.jsx
 
 import io from 'socket.io-client';

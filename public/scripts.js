@@ -64667,7 +64667,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var socket = _socket2.default.connect('/'); // ./socket-listeners/inventory-listener.js
-	// imported into index.jsx
+	// imported into ../components/index.jsx
 
 	var InventorySocketListener = exports.InventorySocketListener = function InventorySocketListener(store) {
 	    socket.on('item:insert', function (item) {
