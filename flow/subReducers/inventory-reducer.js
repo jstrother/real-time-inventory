@@ -1,6 +1,6 @@
 // imported into reducers.js
 
-export const inventoryReducer = (state = [], action) => {
+const inventoryReducer = (state = [], action) => {
     const inventoryIndex = () => {
         return state.findIndex((thisItem) => {
             return thisItem && thisItem.id === action.item.id;
@@ -34,3 +34,5 @@ export const inventoryReducer = (state = [], action) => {
             return state;
     }
 };
+
+export default inventoryReducer;

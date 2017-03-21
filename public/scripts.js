@@ -64613,7 +64613,7 @@
 
 	// imported into reducers.js
 
-	var inventoryReducer = exports.inventoryReducer = function inventoryReducer() {
+	var inventoryReducer = function inventoryReducer() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	    var action = arguments[1];
 
@@ -64649,6 +64649,8 @@
 	    }
 	};
 
+	exports.default = inventoryReducer;
+
 /***/ },
 /* 545 */
 /***/ function(module, exports, __webpack_require__) {
@@ -64658,18 +64660,17 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.InventorySocketListener = undefined;
 
-	var _socket = __webpack_require__(446);
+	var _socket = __webpack_require__(444);
 
 	var _socket2 = _interopRequireDefault(_socket);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var socket = _socket2.default.connect('/'); // ./socket-listeners/inventory-listener.js
-	// imported into ../components/index.jsx
+	// imported into index.jsx
 
-	var InventorySocketListener = exports.InventorySocketListener = function InventorySocketListener(store) {
+	var InventorySocketListener = function InventorySocketListener(store) {
 	    socket.on('item:insert', function (item) {
 	        store.dispatch({
 	            type: 'item:insert',
@@ -64691,6 +64692,8 @@
 	        });
 	    });
 	};
+
+	exports.default = InventorySocketListener;
 
 /***/ }
 /******/ ]);
